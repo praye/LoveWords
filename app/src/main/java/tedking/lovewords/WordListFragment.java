@@ -65,8 +65,8 @@ public class WordListFragment extends Fragment {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mImageView = (ImageView) view.findViewById(R.id.avatar);
-                mTextView = (TextView) view.findViewById(android.R.id.text1);
+                mImageView = view.findViewById(R.id.avatar);
+                mTextView = view.findViewById(android.R.id.text1);
             }
 
             @Override
