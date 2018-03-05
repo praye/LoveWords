@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new WordSearchFragment(), "Search");
-        adapter.addFragment(new WordListFragment(), "Alarm");
+        adapter.addFragment(new AlaramFragment(), "Alarm");
         adapter.addFragment(new WordListFragment(), "Game");
         viewPager.setAdapter(adapter);
     }
