@@ -15,4 +15,6 @@
     <string name="menu_night_mode_day">Day (always)</string>
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
+    <string name="query">查询</string>
+    <string name="alarm_notice">无闹钟</string>
 </resources>
