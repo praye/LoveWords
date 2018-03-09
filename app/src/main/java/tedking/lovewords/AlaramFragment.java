@@ -38,11 +38,4 @@ public class AlaramFragment extends Fragment {
         alarmList.setAdapter(adapter);
         return view;
     }
-    @Override
-    public void onResume(){
-        super.onResume();
-        FloatingActionButton floatingActionButton = getActivity().findViewById(R.id.fab);
-        floatingActionButton.setImageResource(R.drawable.ic_add);
-
-    }
 }

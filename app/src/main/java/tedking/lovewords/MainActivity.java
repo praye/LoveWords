@@ -153,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
         // tab on the top, through viewpager to switch  "search", "alarm", "game" pages
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        if (currentItem == 0){
+            fab.setImageResource(R.drawable.ic_search);
+        }else {
+            fab.setImageResource(R.drawable.ic_add);
+        }
     }
 
     //Helper function to set Mode
