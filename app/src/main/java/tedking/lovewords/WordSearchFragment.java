@@ -1,5 +1,6 @@
 package tedking.lovewords;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
@@ -32,7 +33,10 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),editText.getText(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),editText.getText(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
