@@ -35,7 +35,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getContext(),editText.getText(),Toast.LENGTH_LONG).show();
                 Intent intent = new Intent();
-                intent.setClass(getActivity(),RegisterActivity.class);
+                intent.setClass(getActivity(),LoginActivity.class);
                 startActivity(intent);
             }
         });
