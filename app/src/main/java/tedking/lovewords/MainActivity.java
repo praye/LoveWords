@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private FloatingActionButton fab;
     private TabLayout tabLayout;
+    private int currentItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,14 +112,41 @@ public class MainActivity extends AppCompatActivity {
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
+        currentItem = viewPager.getCurrentItem();
 
         fab = findViewById(R.id.fab);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentItem = position;
+                if (position == 0){
+                    fab.setImageResource(R.drawable.ic_search);
+                }else {
+                    fab.setImageResource(R.drawable.ic_add);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
         //to do
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view,"here's a Snackbar",Snackbar.LENGTH_LONG)
-                        .setAction("Action",null).show();
+                if (currentItem == 0){
+                    Snackbar.make(view,"here's search fragment",Snackbar.LENGTH_LONG)
+                            .setAction("Action",null).show();
+                }else if (currentItem == 1){
+                    Snackbar.make(view,"here's alarm fragment",Snackbar.LENGTH_LONG)
+                            .setAction("Action",null).show();
+                }
             }
         });
 
