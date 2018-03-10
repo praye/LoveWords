@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TimePicker>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/Sunday"
+            android:text="日"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Monday"
+            android:text="一"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Tuesday"
+            android:text="二"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Wednesday"
+            android:text="三"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Thursday"
+            android:text="四"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Friday"
+            android:text="五"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/Saturday"
+            android:layout_marginLeft="10dp"
+            android:text="六"
+            android:background="@drawable/corner_shape"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cancel"
+            android:layout_weight="1"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/confirm"
+            android:text="确定"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>
