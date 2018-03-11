@@ -40,9 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private TabLayout tabLayout;
     private int currentItem;
-    private Dialog dialog;
-    private Button [] days = new Button[7];
-    private boolean []repeat = new boolean[]{false,false,false,false,false,false,false};
+    private AlaramFragment alaramFragment;
+    private WordSearchFragment wordSearchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
         }
         currentItem = viewPager.getCurrentItem();
 
-        buildDialog();
-
         fab = findViewById(R.id.fab);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -144,8 +141,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //to do
-        fab.setOnClickListener(onClickListener);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentItem == 0){
+                    wordSearchFragment.search.performClick();
+                }else if(currentItem == 1){
+                    alaramFragment.updateData.performClick();
+                }
+            }
+        });
 
         // tab on the top, through viewpager to switch  "search", "alarm", "game" pages
         tabLayout = findViewById(R.id.tabs);
@@ -164,9 +169,11 @@ public class MainActivity extends AppCompatActivity {
 
     //called by findView();
     private void setupViewPager(ViewPager viewPager) {
+        wordSearchFragment = new WordSearchFragment();
+        alaramFragment = new AlaramFragment();
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new WordSearchFragment(), "Search");
-        adapter.addFragment(new AlaramFragment(), "Alarm");
+        adapter.addFragment(wordSearchFragment, "Search");
+        adapter.addFragment(alaramFragment, "Alarm");
         adapter.addFragment(new WordListFragment(), "Game");
         viewPager.setAdapter(adapter);
     }
@@ -213,87 +220,4 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentTitles.get(position);
         }
     }
-
-    private void buildDialog(){
-        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        View view = inflater.inflate(R.layout.alarm_dialog, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setView(view);
-        dialog = builder.create();
-        Button cancel = view.findViewById(R.id.cancel);
-        Button confirm = view.findViewById(R.id.confirm);
-        days[0] = view.findViewById(R.id.Sunday);
-        days[1] = view.findViewById(R.id.Monday);
-        days[2] = view.findViewById(R.id.Tuesday);
-        days[3] = view.findViewById(R.id.Wednesday);
-        days[4] = view.findViewById(R.id.Thursday);
-        days[5] = view.findViewById(R.id.Friday);
-        days[6] = view.findViewById(R.id.Saturday);
-        cancel.setOnClickListener(onClickListener);
-        confirm.setOnClickListener(onClickListener);
-        for (int i = 0; i < 7; i ++){
-            days[i].setOnClickListener(onClickListener);
-        }
-    }
-    private void resetRepeate(){
-        for (int i = 0; i < 7; i ++){
-            repeat[i] = false;
-            days[i].setTextColor(0xFF000000);
-        }
-    }
-    private void setRepeat(int i){
-        if (repeat[i]){
-            days[i].setTextColor(0xFF000000);
-        }else {
-            days[i].setTextColor(0xFFFFFFFF);
-        }
-        repeat[i] = !repeat[i];
-    }
-
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.fab:
-                    if (currentItem == 0){
-                        Snackbar.make(view,"here's search fragment",Snackbar.LENGTH_LONG)
-                                .setAction("Action",null).show();
-                    }else if (currentItem == 1){
-                        dialog.show();
-                    }
-                    break;
-                case R.id.cancel:
-                    resetRepeate();
-                    dialog.dismiss();
-                    break;
-                case R.id.confirm:
-                    dialog.dismiss();
-                    Toast.makeText(MainActivity.this,"Confirm",Toast.LENGTH_LONG).show();
-                    resetRepeate();
-                    break;
-                case R.id.Sunday:
-                    setRepeat(0);
-                    break;
-                case R.id.Monday:
-                    setRepeat(1);
-                    break;
-                case R.id.Tuesday:
-                    setRepeat(2);
-                    break;
-                case R.id.Wednesday:
-                    setRepeat(3);
-                    break;
-                case R.id.Thursday:
-                    setRepeat(4);
-                    break;
-                case R.id.Friday:
-                    setRepeat(5);
-                    break;
-                case R.id.Saturday:
-                    setRepeat(6);
-                    break;
-            }
-        }
-    };
-
 }
