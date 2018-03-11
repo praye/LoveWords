@@ -17,6 +17,7 @@
     <string name="menu_night_mode_auto">Auto</string>
     <string name="query">查询</string>
     <string name="alarm_notice">无闹钟</string>
+    <string name="edit_hint">请输入要查询的单词</string>
 
     <string name="title_activity_login">Sign in</string>
 
