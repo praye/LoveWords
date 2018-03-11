@@ -17,7 +17,7 @@ import android.widget.Toast;
  */
 
 public class WordSearchFragment extends android.support.v4.app.Fragment {
-    private Button search;
+    public Button search;
     private EditText editText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
