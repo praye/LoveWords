@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
+        <TextView
+            android:id="@+id/appwidget_text"
+            android:layout_weight="9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="点击按键进入下一个"
+            android:textStyle="bold|italic"
+            android:textSize="16sp"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/newone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="刷新"
+            android:background="#00000000"
+            android:textSize="14sp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/meaning_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp" />
+
+</LinearLayout>

@@ -36,4 +36,6 @@
         completions."
     </string>
     <string name="title_activity_register">Register</string>
+    <string name="appwidget_text">Widget of LoveWords</string>
+    <string name="add_widget">Add widget</string>
 </resources>
