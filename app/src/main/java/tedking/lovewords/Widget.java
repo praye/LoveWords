@@ -21,10 +21,11 @@ public class Widget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        String [] result = setTextOperation(context);
+        views.setTextViewText(R.id.appwidget_text, result[0]);
+        views.setTextViewText(R.id.meaning_widget,result[1]);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -40,9 +41,6 @@ public class Widget extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.widget);
         remoteViews.setOnClickPendingIntent(R.id.newone,pendingIntent);
         appWidgetManager.updateAppWidget(appWidgetIds,remoteViews);
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
@@ -73,19 +71,19 @@ public class Widget extends AppWidgetProvider {
         }
     }
 
-    public String [] setTextOperation(Context context){
-        String tablename = "words", emptycode = "no data in database";
+    public static String [] setTextOperation(Context context){
+        String tableName = "words", emptyCode = "no data in database";
         String [] result = new String[2];
         File file = new File(context.getFilesDir()+"/databases/data.db");
         SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
-        Cursor cursor = database.rawQuery("select * from "+ tablename, null);
+        Cursor cursor = database.rawQuery("select * from "+ tableName, null);
         if (cursor.getCount() == 0){
-            result[0] = emptycode;
+            result[0] = emptyCode;
             database.close();
             return  result;
         }
         else {
-            cursor = database.rawQuery("select * from " + tablename + " order by RANDOM() limit 1", null);
+            cursor = database.rawQuery("select * from " + tableName + " order by RANDOM() limit 1", null);
             while (cursor.moveToNext()) {
                 result[0] = cursor.getString(0);
                 result[1] = cursor.getString(2);
