@@ -18,10 +18,11 @@ import java.io.File;
 public class Widget extends AppWidgetProvider {
     private static String UPDATE_CONDUCTION = "REFRESH WORD IN WIDGET";
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+    /*static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         // Construct the RemoteViews object
+        System.out.println("updateAppWidget");
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
         String [] result = setTextOperation(context);
         views.setTextViewText(R.id.appwidget_text, result[0]);
@@ -29,35 +30,36 @@ public class Widget extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
-    }
+    }*/
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        System.out.println("onUpdate");
         Intent intent = new Intent();
         intent.setAction(UPDATE_CONDUCTION);
-        context.sendBroadcast(intent);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,0);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.widget);
         remoteViews.setOnClickPendingIntent(R.id.newone,pendingIntent);
         appWidgetManager.updateAppWidget(appWidgetIds,remoteViews);
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
+        context.sendBroadcast(intent);
     }
 
     @Override
     public void onEnabled(Context context) {
+        System.out.println("onEnabled");
         // Enter relevant functionality for when the first widget is created
     }
 
     @Override
     public void onDisabled(Context context) {
+        System.out.println("onDisabled");
         // Enter relevant functionality for when the last widget is disabled
     }
 
     @Override
     public void onReceive(Context context,Intent intent){
+        System.out.println("onReceive " + intent.getAction());
         super.onReceive(context,intent);
         RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.widget);
         String action = intent.getAction();
