@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class AlaramFragment extends Fragment {
     private SimpleAdapter adapter;
     public Button updateData;
     private Dialog dialog;
+    private TextView noAlarmNotice;
     private TimePicker timePicker;
     private int hour, minute;
     private Button [] days = new Button[7];
@@ -50,6 +52,7 @@ public class AlaramFragment extends Fragment {
         View view = inflater.inflate(R.layout.alarm_fragment_layout, container,false);
         alarmList = view.findViewById(R.id.alarm_list);
         updateData = view.findViewById(R.id.updateData);
+        noAlarmNotice = view.findViewById(R.id.no_alarm_notice);
         initData();
         alarmList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -66,6 +69,9 @@ public class AlaramFragment extends Fragment {
                         data.remove(position);
                         adapter.notifyDataSetChanged();
                         deleteAlarmFromDatabase(map.get("time"));
+                        if (data.size() == 0){
+                            noAlarmNotice.setVisibility(View.VISIBLE);
+                        }
                     }
                 }).show();
                 return true;
@@ -253,10 +259,11 @@ public class AlaramFragment extends Fragment {
                 database.close();
                 Map<String,Object> temp = new LinkedHashMap<>();
                 temp.put("time",time);
-                temp.put("repeat",hasRepeat ? storeData : "单词闹钟");
+                temp.put("repeat",hasRepeat ? storeData : "单次闹钟");
                 temp.put("take_effect", true);
                 data.add(temp);
                 adapter.notifyDataSetChanged();
+                noAlarmNotice.setVisibility(View.GONE);
                 Toast.makeText(getContext(),alarmSet,Toast.LENGTH_SHORT).show();
             }
         }
@@ -287,9 +294,11 @@ public class AlaramFragment extends Fragment {
         if (notNull) {
             adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
             alarmList.setAdapter(adapter);
+            noAlarmNotice.setVisibility(View.GONE);
         }
         else {
-            alarmList.setAdapter(null);
+            adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
+            alarmList.setAdapter(adapter);
         }
     }
 
