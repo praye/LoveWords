@@ -16,50 +16,50 @@
             android:id="@+id/Sunday"
             android:text="日"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Monday"
             android:text="一"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Tuesday"
             android:text="二"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Wednesday"
             android:text="三"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Thursday"
             android:text="四"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Friday"
             android:text="五"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
         <Button
             android:id="@+id/Saturday"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:text="六"
             android:background="@drawable/corner_shape"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="37dp"
+            android:layout_height="37dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

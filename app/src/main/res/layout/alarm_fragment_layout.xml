@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
     <TextView
+        android:id="@+id/no_alarm_notice"
         android:text="@string/alarm_notice"
         android:textSize="30sp"
         android:layout_gravity="center"
