@@ -42,6 +42,7 @@ public class AlaramFragment extends Fragment {
     private TextView noAlarmNotice;
     private TimePicker timePicker;
     private int hour, minute;
+    private Intent intent;
     private Button [] days = new Button[7];
     List<Map<String,Object>> data = new ArrayList<>();
     private boolean []repeat = new boolean[]{false,false,false,false,false,false,false};
@@ -50,6 +51,7 @@ public class AlaramFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.alarm_fragment_layout, container,false);
+        intent = new Intent(getContext(),AlarmService.class);
         alarmList = view.findViewById(R.id.alarm_list);
         updateData = view.findViewById(R.id.updateData);
         noAlarmNotice = view.findViewById(R.id.no_alarm_notice);
@@ -72,6 +74,7 @@ public class AlaramFragment extends Fragment {
                         if (data.size() == 0){
                             noAlarmNotice.setVisibility(View.VISIBLE);
                         }
+                        getContext().startService(intent);
                     }
                 }).show();
                 return true;
@@ -265,6 +268,7 @@ public class AlaramFragment extends Fragment {
                 adapter.notifyDataSetChanged();
                 noAlarmNotice.setVisibility(View.GONE);
                 Toast.makeText(getContext(),alarmSet,Toast.LENGTH_SHORT).show();
+                getContext().startService(intent);
             }
         }
     }
@@ -274,6 +278,7 @@ public class AlaramFragment extends Fragment {
         String time,repeat;
         boolean take_effect;
         boolean notNull = false;
+        getContext().startService(intent);
         File file = new File(getContext().getFilesDir()+"/databases/data.db");
         SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
         Cursor cursor = database.rawQuery("select * from alarm", null);
