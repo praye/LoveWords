@@ -142,6 +142,7 @@ public class AlaramFragment extends Fragment {
         days[5] = view.findViewById(R.id.Friday);
         days[6] = view.findViewById(R.id.Saturday);
         timePicker = view.findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
         updateData.setOnClickListener(onClickListener);
         cancel.setOnClickListener(onClickListener);
         confirm.setOnClickListener(onClickListener);
