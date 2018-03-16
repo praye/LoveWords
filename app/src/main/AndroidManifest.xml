@@ -67,13 +67,20 @@
         <receiver android:name=".Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="REFRESH WORD IN WIDGET"></action>
+                <action android:name="REFRESH WORD IN WIDGET" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
+
+        <service
+            android:name=".AlarmService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".AlarmingActivity"></activity>
     </application>
 
 </manifest>
