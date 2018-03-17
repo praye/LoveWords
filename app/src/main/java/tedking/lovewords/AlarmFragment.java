@@ -36,7 +36,8 @@ import java.util.Map;
 
 public class AlarmFragment extends Fragment {
     private ListView alarmList;
-    private SimpleAdapter adapter;
+    //private SimpleAdapter adapter;
+    private RecycleAdapter adapter;
     public Button updateData;
     private Dialog dialog;
     private TextView noAlarmNotice;
@@ -44,7 +45,8 @@ public class AlarmFragment extends Fragment {
     private int hour, minute;
     private Intent intent;
     private Button [] days = new Button[7];
-    List<Map<String,Object>> data = new ArrayList<>();
+    //List<Map<String,Object>> data = new ArrayList<>();
+    List<TimeDetail> data = new ArrayList<>();
     private boolean []repeat = new boolean[]{false,false,false,false,false,false,false};
     private String [] repeatDay = {"日 ","一 ","二 ","三 ","四 ","五 ","六 "};
     private static String alarmExist = "该时间的闹钟已存在，请重新设置", alarmTimeTooNear = "您设置的闹钟太相近，请重新设置", alarmSet = "闹钟已成功设置";
@@ -59,7 +61,7 @@ public class AlarmFragment extends Fragment {
         alarmList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long id) {
-                final Map<String, String> map = (Map< String, String>)adapter.getItem(position);
+                final TimeDetail temp = (TimeDetail)adapter.getItem(position);
                 new AlertDialog.Builder(getContext()).setMessage("是否删除").setNegativeButton("否", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -70,7 +72,7 @@ public class AlarmFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         data.remove(position);
                         adapter.notifyDataSetChanged();
-                        deleteAlarmFromDatabase(map.get("time"));
+                        deleteAlarmFromDatabase(temp.getTime());
                         if (data.size() == 0){
                             noAlarmNotice.setVisibility(View.VISIBLE);
                         }
@@ -261,11 +263,12 @@ public class AlarmFragment extends Fragment {
                 cv.put("take_effect","1");
                 database.insert("alarm",null,cv);
                 database.close();
-                Map<String,Object> temp = new LinkedHashMap<>();
+                /*Map<String,Object> temp = new LinkedHashMap<>();
                 temp.put("time",time);
                 temp.put("repeat",hasRepeat ? storeData : "单次闹钟");
-                temp.put("take_effect", true);
-                data.add(temp);
+                temp.put("take_effect", true);*/
+                TimeDetail timeDetail = new TimeDetail(time, hasRepeat ? storeData:"单词闹钟",true);
+                data.add(timeDetail);
                 adapter.notifyDataSetChanged();
                 noAlarmNotice.setVisibility(View.GONE);
                 Toast.makeText(getContext(),alarmSet,Toast.LENGTH_SHORT).show();
@@ -289,21 +292,25 @@ public class AlarmFragment extends Fragment {
             time = cursor.getString(0);
             repeat = cursor.getString(1);
             take_effect = cursor.getInt(3) == 1 ? true : false;
-            Map<String,Object> temp = new LinkedHashMap<>();
+            TimeDetail timeDetail = new TimeDetail(time,repeat,take_effect);
+            /*Map<String,Object> temp = new LinkedHashMap<>();
             temp.put("time",time);
             temp.put("repeat",repeat);
             temp.put("take_effect", take_effect);
-            data.add(temp);
+            data.add(temp);*/
+            data.add(timeDetail);
         }
         cursor.close();
         database.close();
         if (notNull) {
-            adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
+            //adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
+            adapter = new RecycleAdapter(getContext(),data);
             alarmList.setAdapter(adapter);
             noAlarmNotice.setVisibility(View.GONE);
         }
         else {
-            adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
+            //adapter = new SimpleAdapter(getContext(), data, R.layout.alarm_item_layout, new String[]{"time",  "repeat", "take_effect"}, new int[]{R.id.time, R.id.repeat_day, R.id.alarm_control});
+            adapter = new RecycleAdapter(getContext(),data);
             alarmList.setAdapter(adapter);
         }
     }
