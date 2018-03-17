@@ -34,7 +34,7 @@ import java.util.Map;
  * Created by Administrator on 2018/3/5.
  */
 
-public class AlaramFragment extends Fragment {
+public class AlarmFragment extends Fragment {
     private ListView alarmList;
     private SimpleAdapter adapter;
     public Button updateData;

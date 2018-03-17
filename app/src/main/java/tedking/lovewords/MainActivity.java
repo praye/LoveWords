@@ -1,13 +1,8 @@
 package tedking.lovewords;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,13 +14,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private TabLayout tabLayout;
     private int currentItem;
-    private AlaramFragment alaramFragment;
+    private AlarmFragment alarmFragment;
     private WordSearchFragment wordSearchFragment;
 
     @Override
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 if (currentItem == 0){
                     wordSearchFragment.search.performClick();
                 }else if(currentItem == 1){
-                    alaramFragment.updateData.performClick();
+                    alarmFragment.updateData.performClick();
                 }
             }
         });
@@ -170,10 +161,10 @@ public class MainActivity extends AppCompatActivity {
     //called by findView();
     private void setupViewPager(ViewPager viewPager) {
         wordSearchFragment = new WordSearchFragment();
-        alaramFragment = new AlaramFragment();
+        alarmFragment = new AlarmFragment();
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(wordSearchFragment, "Search");
-        adapter.addFragment(alaramFragment, "Alarm");
+        adapter.addFragment(alarmFragment, "Alarm");
         adapter.addFragment(new WordListFragment(), "Game");
         viewPager.setAdapter(adapter);
     }
