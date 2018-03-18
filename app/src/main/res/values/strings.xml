@@ -21,6 +21,13 @@
 
     <string name="title_activity_login">Sign in</string>
 
+    <!-- Strings for the welcome page -->
+    <string name="welcome">Welcome to LoveWords</string>
+    <string name="welcome_content_1">Look up a word</string>
+    <string name="welcome_content_2">Set a reminder</string>
+    <string name="welcome_content_3">Test yourself everyday</string>
+    <string name="welcome_content_4">Learn it forever</string>
+
     <!-- Strings related to login -->
     <string name="login">Login</string>
     <string name="register">Register</string>
