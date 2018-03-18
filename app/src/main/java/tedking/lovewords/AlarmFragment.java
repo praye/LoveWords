@@ -267,7 +267,7 @@ public class AlarmFragment extends Fragment {
                 temp.put("time",time);
                 temp.put("repeat",hasRepeat ? storeData : "单次闹钟");
                 temp.put("take_effect", true);*/
-                TimeDetail timeDetail = new TimeDetail(time, hasRepeat ? storeData:"单词闹钟",true);
+                TimeDetail timeDetail = new TimeDetail(time, hasRepeat ? storeData:"单次闹钟",true);
                 data.add(timeDetail);
                 adapter.notifyDataSetChanged();
                 noAlarmNotice.setVisibility(View.GONE);
