@@ -2,31 +2,46 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group  android:checkableBehavior="all">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_dashboard"
-            android:title="Home"/>
+            android:id="@+id/nav_learning"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="Words I'm Learning"/>
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_event"
-            android:title="Messages" />
+            android:id="@+id/nav_played"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="Words I've played" />
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_headset"
-            android:title="Friends" />
+            android:id="@+id/nav_mastered"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="Words I've mastered" />
         <item
-            android:id="@+id/nav_discussion"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
+            android:id="@+id/nav_achievements"
+            android:icon="@drawable/ic_brightness_7_black_24dp"
+            android:title="My Achievements" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_feedback_black_24dp"
+            android:title="Submit Feedback" />
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="Rate the App" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Log Out" />
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="LEADER BOARDS">
         <menu>
             <item
-                android:icon="@drawable/ic_dashboard"
-                android:title="Sub item 1" />
+                android:icon="@drawable/ic_event"
+                android:title="Today" />
             <item
-                android:icon="@drawable/ic_forum"
-                android:title="Sub item 2" />
+                android:icon="@drawable/ic_event"
+                android:title="This Week" />
+            <item
+                android:icon="@drawable/ic_event"
+                android:title="This Month" />
         </menu>
     </item>
 </menu>
