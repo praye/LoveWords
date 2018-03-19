@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.avos.avoscloud.feedback.FeedbackAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +38,15 @@ public class MainActivity extends AppCompatActivity {
     private int currentItem;
     private AlarmFragment alarmFragment;
     private WordSearchFragment wordSearchFragment;
+    private FeedbackAgent agent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findView();
+        agent = new FeedbackAgent(MainActivity.this);
+        agent.sync();
     }
 
     //inflate sample options
@@ -181,8 +186,27 @@ public class MainActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         //Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
                         switch (menuItem.getTitle().toString()){
+                            case "Words I'm Learning":
+                                break;
+                            case "Words I've played":
+                                break;
+                            case "Words I've mastered":
+                                break;
+                            case "My Achievements":
+                                break;
+                            case "Log Out":
+                                break;
                             case "Rate the App" :
                                 rateApp();
+                                break;
+                            case "Submit Feedback":
+                                agent.startDefaultThreadActivity();
+                                break;
+                            case "Today":
+                                break;
+                            case "This Week":
+                                break;
+                            case "This Month":
                                 break;
                         }
                         return true;
