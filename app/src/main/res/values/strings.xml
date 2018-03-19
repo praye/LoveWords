@@ -21,7 +21,7 @@
 
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings for the welcome page -->
+    <!-- Strings for layout_guidecome page -->
     <string name="welcome">Welcome to LoveWords</string>
     <string name="welcome_content_1">Look up a word</string>
     <string name="welcome_content_2">Set a reminder</string>
