@@ -1,5 +1,7 @@
 package tedking.lovewords;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -175,9 +177,14 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
+                        //menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
+                        switch (menuItem.getTitle().toString()){
+                            case "Rate the App" :
+                                rateApp();
+                                break;
+                        }
                         return true;
                     }
                 });
@@ -220,6 +227,18 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawers();
         }else {
             super.onBackPressed();
+        }
+    }
+
+    private void rateApp(){
+        try{
+            Uri uri = Uri.parse("market://details?id="+getPackageName());
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }catch(Exception e){
+            Toast.makeText(MainActivity.this, "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
     }
 }
