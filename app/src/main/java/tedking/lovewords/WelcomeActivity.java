@@ -15,7 +15,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
-        toGuide = AVUser.getCurrentUser() == null ? true : false;
+        toGuide = AVUser.getCurrentUser() == null;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

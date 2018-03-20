@@ -1,8 +1,10 @@
 package tedking.lovewords;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +18,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     private AlarmFragment alarmFragment;
     private WordSearchFragment wordSearchFragment;
     private FeedbackAgent agent;
+    private SharedPreferences preferences;
+    private int startFragmentId;
+    private SharedPreferences.Editor editor;
+    public static final String STARTFRAGMENTID = "startFragmentId", SONGID = "songId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +60,33 @@ public class MainActivity extends AppCompatActivity {
     //inflate sample options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sample_actions,menu);
+        getMenuInflater().inflate(R.menu.menu_actions,menu);
         return true;
     }
 
     //set
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        switch (AppCompatDelegate.getDefaultNightMode()) {
-            case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
-                menu.findItem(R.id.menu_night_mode_system).setChecked(true);
+        switch (preferences.getInt(STARTFRAGMENTID,0)){
+            case 0:
+                menu.findItem(R.id.menu_search).setChecked(true);
                 break;
-            case AppCompatDelegate.MODE_NIGHT_AUTO:
-                menu.findItem(R.id.menu_night_mode_auto).setChecked(true);
+            case 1:
+                menu.findItem(R.id.menu_alarm).setChecked(true);
                 break;
-            case AppCompatDelegate.MODE_NIGHT_YES:
-                menu.findItem(R.id.menu_night_mode_night).setChecked(true);
+            case 2:
+                menu.findItem(R.id.menu_game).setChecked(true);
                 break;
-            case AppCompatDelegate.MODE_NIGHT_NO:
-                menu.findItem(R.id.menu_night_mode_day).setChecked(true);
+        }
+        switch (preferences.getInt(SONGID,0)){
+            case 0:
+                menu.findItem(R.id.menu_song0).setChecked(true);
+                break;
+            case 1:
+                menu.findItem(R.id.menu_song1).setChecked(true);
+                break;
+            case 2:
+                menu.findItem(R.id.menu_song2).setChecked(true);
                 break;
         }
         return true;
@@ -85,17 +98,26 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.menu_night_mode_system:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            case R.id.menu_search:
+                preferenceEdit(STARTFRAGMENTID,0);
                 break;
-            case R.id.menu_night_mode_day:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            case R.id.menu_alarm:
+                preferenceEdit(STARTFRAGMENTID,1);
                 break;
-            case R.id.menu_night_mode_night:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            case R.id.menu_game:
+                preferenceEdit(STARTFRAGMENTID,2);
                 break;
-            case R.id.menu_night_mode_auto:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+            case R.id.menu_song0:
+                preferenceEdit(SONGID,0);
+                break;
+            case R.id.menu_song1:
+                preferenceEdit(SONGID,1);
+                break;
+            case R.id.menu_song2:
+                preferenceEdit(SONGID,2);
+                break;
+            case R.id.menu_about:
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -162,11 +184,10 @@ public class MainActivity extends AppCompatActivity {
         }else {
             fab.setImageResource(R.drawable.ic_add);
         }
-    }
+        preferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
+        startFragmentId = preferences.getInt(STARTFRAGMENTID,0);
+        viewPager.setCurrentItem(startFragmentId);
 
-    //Helper function to set Mode
-    private void setNightMode(@AppCompatDelegate.NightMode int nightMode) {
-        AppCompatDelegate.setDefaultNightMode(nightMode);
     }
 
     //called by findView();
@@ -284,5 +305,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "No App Market is installed in your device", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+    }
+
+    private void preferenceEdit(String sting, int number){
+        editor = preferences.edit();
+        editor.putInt(sting,number);
+        editor.commit();
     }
 }
