@@ -1,5 +1,7 @@
 package tedking.lovewords;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.feedback.FeedbackAgent;
 
 import java.util.ArrayList;
@@ -195,6 +198,23 @@ public class MainActivity extends AppCompatActivity {
                             case "My Achievements":
                                 break;
                             case "Log Out":
+                                if (AVUser.getCurrentUser()!= null){
+                                    new AlertDialog.Builder(MainActivity.this).setMessage("We do not advise you to log out your account, it may cause your data lost").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    }).setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            AVUser.getCurrentUser().logOut();
+                                            Toast.makeText(MainActivity.this,"You have logged out your account!", Toast.LENGTH_LONG).show();
+                                        }
+                                    }).show();
+                                }
+                                else{
+                                    Toast.makeText(MainActivity.this,"You have not logged in yet",Toast.LENGTH_LONG).show();
+                                }
                                 break;
                             case "Rate the App" :
                                 rateApp();
@@ -261,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }catch(Exception e){
-            Toast.makeText(MainActivity.this, "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "No App Market is installed in your device", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
