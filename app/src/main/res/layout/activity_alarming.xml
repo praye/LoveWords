@@ -6,14 +6,14 @@
 
     <Button
         android:id="@+id/todo"
-        android:text="to be implement"
+        android:text="to Exercise"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:layout_gravity="center"
         android:id="@+id/exit"
-        android:text="退出闹钟"
+        android:text="exit the App"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
