@@ -10,11 +10,6 @@
 
     <string name="checkin">Checkin</string>
 
-    <string name="menu_night_mode">Night mode</string>
-    <string name="menu_night_mode_system">Follow system</string>
-    <string name="menu_night_mode_day">Day (always)</string>
-    <string name="menu_night_mode_night">Night (always)</string>
-    <string name="menu_night_mode_auto">Auto</string>
     <string name="query">Search</string>
     <string name="alarm_notice">No Alarms</string>
     <string name="edit_hint">Type the word you want to search here</string>
