@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
+    private EditText confirmPasswordView;
     private View mProgressView;
     private View mRegisterFormView;
 
@@ -61,20 +62,11 @@ public class RegisterActivity extends AppCompatActivity {
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Set up the register form.
 
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.register || id == EditorInfo.IME_NULL) {
-                    attemptRegister();
-                    return true;
-                }
-                return false;
-            }
-        });
+        mUsernameView =  findViewById(R.id.username);
+        mPasswordView =  findViewById(R.id.password);
+        confirmPasswordView = findViewById(R.id.confirm_password);
 
-        Button musernameSignInButton = (Button) findViewById(R.id.username_register_button);
+        Button musernameSignInButton = findViewById(R.id.register_button);
         musernameSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,10 +87,12 @@ public class RegisterActivity extends AppCompatActivity {
         // Reset errors.
         mUsernameView.setError(null);
         mPasswordView.setError(null);
+        confirmPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String confirmPassword = confirmPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -114,6 +108,13 @@ public class RegisterActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(username)) {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
+            cancel = true;
+        }
+
+        //Check for two passwords are match
+        if (!password.equals(confirmPassword)){
+            confirmPasswordView.setError("Two passwords are not matched");
+            focusView = confirmPasswordView;
             cancel = true;
         }
 

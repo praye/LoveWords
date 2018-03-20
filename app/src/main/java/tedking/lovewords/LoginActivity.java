@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle(getString(R.string.login));
 
         // Set up the login form.
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mUsernameView = findViewById(R.id.username);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mUsernameLoginButton = (Button) findViewById(R.id.username_login_button);
+        Button mUsernameLoginButton = findViewById(R.id.username_login_button);
         mUsernameLoginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mUsernameRegisterButton = (Button) findViewById(R.id.username_register_button);
+        Button mUsernameRegisterButton = findViewById(R.id.username_register_button);
         mUsernameRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
