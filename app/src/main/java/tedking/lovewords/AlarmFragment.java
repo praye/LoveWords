@@ -62,12 +62,12 @@ public class AlarmFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long id) {
                 final TimeDetail temp = (TimeDetail)adapter.getItem(position);
-                new AlertDialog.Builder(getContext()).setMessage("是否删除").setNegativeButton("否", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(getContext()).setMessage("Sure to delete the alarm?").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
-                }).setPositiveButton("是", new DialogInterface.OnClickListener() {
+                }).setPositiveButton("confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         data.remove(position);

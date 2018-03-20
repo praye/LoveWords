@@ -15,9 +15,9 @@
     <string name="menu_night_mode_day">Day (always)</string>
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
-    <string name="query">查询</string>
-    <string name="alarm_notice">无闹钟</string>
-    <string name="edit_hint">请输入要查询的单词</string>
+    <string name="query">Search</string>
+    <string name="alarm_notice">No Alarms</string>
+    <string name="edit_hint">Type the word you want to search here</string>
 
     <string name="title_activity_login">Sign in</string>
 

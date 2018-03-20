@@ -43,7 +43,7 @@ import java.net.URLEncoder;
 public class WordSearchFragment extends android.support.v4.app.Fragment {
     private static final String url = "http://fanyi.youdao.com/openapi.do?keyfrom=WordAlarm&key=1428833977&type=data&doctype=xml&version=1.1&q=",
             firstOpenApp = "firstOpenApp", search_failed_in_database = "not found in database",
-            search_failed_in_Internet = "not found in Internet";;
+            search_failed_in_Internet = "not found in Internet";
     public Button search;
     private EditText searchWord;
     private TextView wordItself, pronunciation, meaning;
@@ -181,7 +181,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
 
     public void searchWordandsetText(){
         if (searchWord.getText().toString().equals("")){
-            Toast.makeText(getContext(),"请输入你要查询的单词",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Please input the word you want to search",Toast.LENGTH_LONG).show();
         }else {
             String [] result = searchFromDatabase();
             if (!result[0].equals(search_failed_in_database)){
@@ -191,7 +191,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
             }else if (isNetworkAvailable()){
                 searchFromInternet();
             }else {
-                Toast.makeText(getContext(),"请检查网络连接",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Please check if your Internet is available",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -201,7 +201,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
             switch (message.what){
                 case UPDATE_CONTENT:
                     if (result[0].equals(search_failed_in_Internet)){
-                        Toast.makeText(getContext(),"查询失败，请检查输入是否正确",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Search Failed, please check if your word is valid",Toast.LENGTH_SHORT).show();
                         wordItself.setText("");
                         pronunciation.setText("");
                         meaning.setText("");
