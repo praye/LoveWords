@@ -1,7 +1,9 @@
 package tedking.lovewords;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,8 +17,10 @@ public class AlarmingActivity extends Activity {
     private static final long EXECUTE_TIME = 180000;
     private Vibrator vibrator;
     private Handler handler = new Handler();
+    private SharedPreferences preferences;
     private Button exit, todo;
     long [] pattern = {1000,1000};
+    private static final String SONGID = "songId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +33,20 @@ public class AlarmingActivity extends Activity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         exit = findViewById(R.id.exit);
         todo = findViewById(R.id.todo);
+        preferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 finish();
             }
         },EXECUTE_TIME);
-        mediaPlayer = MediaPlayer.create(this,R.raw.song);
+        if (preferences.getInt(SONGID, 0) == 0){
+            mediaPlayer = MediaPlayer.create(this,R.raw.song0);
+        }else if (preferences.getInt(SONGID, 0) == 1){
+            mediaPlayer = MediaPlayer.create(this,R.raw.song1);
+        }else {
+            mediaPlayer = MediaPlayer.create(this,R.raw.song2);
+        }
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
         vibrator.vibrate(pattern, 0);

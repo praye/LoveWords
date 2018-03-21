@@ -37,7 +37,7 @@
                         <group android:checkableBehavior="single">
                             <item android:title="Mariage D'amour "
                                 android:id="@+id/menu_song0"></item>
-                            <item android:title="Summer"
+                            <item android:title="故郷の原风景"
                                 android:id="@+id/menu_song1"></item>
                             <item android:title="天空の城"
                                 android:id="@+id/menu_song2"></item>
