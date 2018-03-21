@@ -6,14 +6,15 @@
     <ListView
         android:id="@+id/alarm_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/no_alarm_notice"
         android:text="@string/alarm_notice"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
     <Button
         android:id="@+id/updateData"
         android:text="update"

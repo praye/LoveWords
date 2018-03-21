@@ -64,19 +64,24 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
         <Button
             android:id="@+id/cancel"
             android:layout_weight="1"
-            android:text="取消"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="CANCEL"
+            android:textSize="21sp"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
         <Button
             android:id="@+id/confirm"
-            android:text="确定"
+            android:text="SURE"
+            android:textSize="21sp"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
     </LinearLayout>
 
 </LinearLayout>

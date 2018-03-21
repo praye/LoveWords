@@ -24,6 +24,13 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+    //https://github.com/arimorty/floatingsearchview/blob/master/README.md 感觉换成searchView比较好，目前还在实验
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:queryHint="Type in..."/>
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

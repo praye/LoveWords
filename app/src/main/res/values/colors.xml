@@ -2,4 +2,5 @@
 <resources>
     <color name="window_background">#FFF5F5F5</color>
     <color name="welcome_background">#388E3C</color>
+    <color name="orange">#FF9800</color>
 </resources>
