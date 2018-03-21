@@ -219,23 +219,7 @@ public class MainActivity extends AppCompatActivity {
                             case "My Achievements":
                                 break;
                             case "Log Out":
-                                if (AVUser.getCurrentUser()!= null){
-                                    new AlertDialog.Builder(MainActivity.this).setMessage("We do not advise you to log out your account, it may cause your data lost").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        }
-                                    }).setPositiveButton("confirm", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            AVUser.getCurrentUser().logOut();
-                                            Toast.makeText(MainActivity.this,"You have logged out your account!", Toast.LENGTH_LONG).show();
-                                        }
-                                    }).show();
-                                }
-                                else{
-                                    Toast.makeText(MainActivity.this,"You have not logged in yet",Toast.LENGTH_LONG).show();
-                                }
+                                logOut();
                                 break;
                             case "Rate the App" :
                                 rateApp();
@@ -244,10 +228,13 @@ public class MainActivity extends AppCompatActivity {
                                 agent.startDefaultThreadActivity();
                                 break;
                             case "Today":
+                                toChampionActivity("Today");
                                 break;
                             case "This Week":
+                                toChampionActivity("This Week");
                                 break;
                             case "This Month":
+                                toChampionActivity("This Month");
                                 break;
                         }
                         return true;
@@ -311,5 +298,32 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
         editor.putInt(sting,number);
         editor.commit();
+    }
+
+    private void toChampionActivity(String stage){
+        Intent intent = new Intent(MainActivity.this,ChampionActivity.class);
+        intent.putExtra("stage",stage);
+        startActivity(intent);
+    }
+
+    private void logOut(){
+        if (AVUser.getCurrentUser()!= null){
+            new AlertDialog.Builder(MainActivity.this).setMessage("We do not advise you to log out your account, it may cause your data lost").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }).setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    AVUser.getCurrentUser().logOut();
+                    Toast.makeText(MainActivity.this,"You have logged out your account!", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }).show();
+        }
+        else{
+            Toast.makeText(MainActivity.this,"You have not logged in yet",Toast.LENGTH_LONG).show();
+        }
     }
 }
