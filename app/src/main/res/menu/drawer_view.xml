@@ -6,10 +6,6 @@
             android:icon="@drawable/ic_trending_up_black_24dp"
             android:title="Words I'm Learning"/>
         <item
-            android:id="@+id/nav_played"
-            android:icon="@drawable/ic_trending_up_black_24dp"
-            android:title="Words I've played" />
-        <item
             android:id="@+id/nav_mastered"
             android:icon="@drawable/ic_trending_up_black_24dp"
             android:title="Words I've mastered" />
@@ -39,9 +35,6 @@
             <item
                 android:icon="@drawable/ic_event"
                 android:title="This Week" />
-            <item
-                android:icon="@drawable/ic_event"
-                android:title="This Month" />
         </menu>
     </item>
 </menu>

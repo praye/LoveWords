@@ -212,8 +212,6 @@ public class MainActivity extends AppCompatActivity {
                         switch (menuItem.getTitle().toString()){
                             case "Words I'm Learning":
                                 break;
-                            case "Words I've played":
-                                break;
                             case "Words I've mastered":
                                 break;
                             case "My Achievements":
@@ -232,9 +230,6 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case "This Week":
                                 toChampionActivity("This Week");
-                                break;
-                            case "This Month":
-                                toChampionActivity("This Month");
                                 break;
                         }
                         return true;
