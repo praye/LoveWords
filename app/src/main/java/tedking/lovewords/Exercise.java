@@ -61,9 +61,9 @@ public class Exercise extends Activity {
     }
 
     private void updateScores(){
-        AVObject daySocre = AVObject.createWithoutData("dayScore",objectId);
-        daySocre.put("score",200);
-        daySocre.saveInBackground(new SaveCallback() {
+        AVObject dayScore = AVObject.createWithoutData("dayScore",objectId);
+        dayScore.put("score",200);
+        dayScore.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null){
