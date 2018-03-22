@@ -76,7 +76,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
         <Button
             android:id="@+id/confirm"
-            android:text="SURE"
+            android:text="CONFIRM"
             android:textSize="21sp"
             android:layout_weight="1"
             android:layout_width="88dp"

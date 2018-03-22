@@ -30,6 +30,7 @@ allprojects {
             url "http://mvn.leancloud.cn/nexus/content/repositories/public"
         }
 
+
     }
 }
 
