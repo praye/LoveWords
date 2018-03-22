@@ -42,7 +42,7 @@ import java.net.URLEncoder;
 
 public class WordSearchFragment extends android.support.v4.app.Fragment {
     private static final String url = "http://fanyi.youdao.com/openapi.do?keyfrom=WordAlarm&key=1428833977&type=data&doctype=xml&version=1.1&q=",
-            firstOpenApp = "firstOpenApp", search_failed_in_database = "not found in database",
+            search_failed_in_database = "not found in database",
             search_failed_in_Internet = "not found in Internet";
     public Button search;
     private EditText searchWord;
@@ -84,12 +84,12 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
     }
 
     public void isFirstOpenApp(){
-        preferences = getContext().getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
-        firstOpen = preferences.getBoolean(firstOpenApp,true);
+        preferences = getContext().getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
+        firstOpen = preferences.getBoolean(StringConstant.FIRSTOPENAPP,true);
         if (firstOpen){
             importDatabase();
             editor = preferences.edit();
-            editor.putBoolean(firstOpenApp, false).commit();
+            editor.putBoolean(StringConstant.FIRSTOPENAPP, false).commit();
             //Toast.makeText(getContext(), "yes", Toast.LENGTH_LONG).show();
         }
     }
