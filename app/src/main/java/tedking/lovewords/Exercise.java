@@ -22,7 +22,6 @@ import java.io.File;
 public class Exercise extends Activity {
     private Button [] choices = new Button[4];
     private TextView word, timer, score;
-    private String objectId;
     private String [] words;
     private String [] explains;
     private SharedPreferences preferences;
@@ -153,8 +152,10 @@ public class Exercise extends Activity {
         questionNow ++;
         if (questionNow == actualQuestionNumber){
             if (i == position){
+                scoreNumber += 10;
                 Intent intent = new Intent(Exercise.this,FinishExerciseActivity.class);
                 intent.putExtra("score",scoreNumber);
+                intent.putExtra("wordFinish", questionNumber != actualQuestionNumber);
                 startActivity(intent);
                 finish();
             }else {
@@ -175,37 +176,7 @@ public class Exercise extends Activity {
         }
     }
 
+    //TODO CountDownTimer
+    //TODO false select should have more effect to notice users
 
-    private void sendScores(){
-        final AVObject dayScore = new AVObject("dayScore");
-        dayScore.put("user", AVUser.getCurrentUser().getUsername());
-        dayScore.put("score",100);
-        dayScore.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                if (e == null){
-                    objectId = dayScore.getObjectId();
-                    Toast.makeText(Exercise.this,"数据上传成功",Toast.LENGTH_LONG).show();
-
-                }else {
-                    Toast.makeText(Exercise.this,"网络错误，请稍后再试",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-
-    private void updateScores(){
-        AVObject dayScore = AVObject.createWithoutData("dayScore",objectId);
-        dayScore.put("score",200);
-        dayScore.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                if (e == null){
-                    Toast.makeText(Exercise.this,"数据修改成功",Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(Exercise.this,"数据修改错误",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
 }
