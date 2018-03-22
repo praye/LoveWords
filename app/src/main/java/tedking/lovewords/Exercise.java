@@ -26,7 +26,6 @@ public class Exercise extends Activity {
     private String [] words;
     private String [] explains;
     private SharedPreferences preferences;
-    private static final String QUESTIONNUMBER = "question_number";
     private int questionNumber, actualQuestionNumber, questionNow = 0, position, scoreNumber;
 
     @Override
@@ -66,8 +65,8 @@ public class Exercise extends Activity {
         choices[1] = findViewById(R.id.choice1);
         choices[2] = findViewById(R.id.choice2);
         choices[3] = findViewById(R.id.choice3);
-        preferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
-        questionNumber = preferences.getInt(QUESTIONNUMBER, 10);
+        preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
+        questionNumber = preferences.getInt(StringConstant.QUESTIONNUMBER, 10);
         words = new String[questionNumber];
         explains = new String[questionNumber * 4];
     }
