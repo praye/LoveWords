@@ -7,14 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <EditText
-            android:imeOptions="actionSearch"
-            android:maxLines="1"
-            android:id="@+id/edit_query"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:hint="@string/edit_hint"
-            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btn_search"
             android:textAllCaps="false"
@@ -24,11 +17,38 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    //https://github.com/arimorty/floatingsearchview/blob/master/README.md 感觉换成searchView比较好，目前还在实验
-    <SearchView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Type in..."/>
+        cardview:cardCornerRadius="2dp"
+        cardview:cardElevation="4dp"
+        android:layout_margin="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+            <EditText
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:id="@+id/edit_query"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="11"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/search_icon"
+                android:hint="Type In..." />
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_search_black_24dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
     <LinearLayout
