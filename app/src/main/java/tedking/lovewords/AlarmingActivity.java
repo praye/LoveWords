@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AlarmingActivity extends Activity {
     private MediaPlayer mediaPlayer;
@@ -20,7 +21,7 @@ public class AlarmingActivity extends Activity {
     private SharedPreferences preferences;
     private Button exit, todo;
     long [] pattern = {1000,1000};
-    private static final String SONGID = "songId";
+    private static final String SONGID = "songId", TESTFINISH = "testFinish";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +64,13 @@ public class AlarmingActivity extends Activity {
             public void onClick(View view) {
                 mediaPlayer.stop();
                 vibrator.cancel();
-                Intent intent1 = new Intent();
-                intent1.setClass(AlarmingActivity.this,Exercise.class);
-                startActivity(intent1);
+                if (preferences.getBoolean(TESTFINISH, false)){
+                    Toast.makeText(AlarmingActivity.this,"词库已经做完",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent1 = new Intent();
+                    intent1.setClass(AlarmingActivity.this,Exercise.class);
+                    startActivity(intent1);
+                }
                 finish();
             }
         });
