@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private int startFragmentId;
     private SharedPreferences.Editor editor;
-    public static final String STARTFRAGMENTID = "startFragmentId", SONGID = "songId";
+    public static final String STARTFRAGMENTID = "startFragmentId", SONGID = "songId", QUESTIONNUMBER = "question_number";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.menu_song2).setChecked(true);
                 break;
         }
+        switch (preferences.getInt(QUESTIONNUMBER,10)){
+            case 5:
+                menu.findItem(R.id.menu_number_5).setChecked(true);
+                break;
+            case 10:
+                menu.findItem(R.id.menu_number_10).setChecked(true);
+                break;
+            case 15:
+                menu.findItem(R.id.menu_number_15).setChecked(true);
+                break;
+        }
         return true;
     }
 
@@ -115,6 +126,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_song2:
                 preferenceEdit(SONGID,2);
+                break;
+            case R.id.menu_number_5:
+                preferenceEdit(QUESTIONNUMBER,5);
+                break;
+            case R.id.menu_number_10:
+                preferenceEdit(QUESTIONNUMBER,10);
+                break;
+            case R.id.menu_number_15:
+                preferenceEdit(QUESTIONNUMBER,15);
                 break;
             case R.id.menu_about:
                 startActivity(new Intent(this,AboutActivity.class));

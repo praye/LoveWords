@@ -35,12 +35,26 @@
                     android:title="Alarm Clock" >
                     <menu>
                         <group android:checkableBehavior="single">
-                            <item android:title="Mariage D'amour "
+                            <item android:title="Mariage D'amour"
                                 android:id="@+id/menu_song0"></item>
                             <item android:title="故郷の原风景"
                                 android:id="@+id/menu_song1"></item>
                             <item android:title="天空の城"
                                 android:id="@+id/menu_song2"></item>
+                        </group>
+                    </menu>
+                </item>
+                <item
+                    android:id="@+id/menu_questionNumber"
+                    android:title="Question Number" >
+                    <menu>
+                        <group android:checkableBehavior="single">
+                            <item android:title="5"
+                                android:id="@+id/menu_number_5"></item>
+                            <item android:title="10"
+                                android:id="@+id/menu_number_10"></item>
+                            <item android:title="15"
+                                android:id="@+id/menu_number_15"></item>
                         </group>
                     </menu>
                 </item>
