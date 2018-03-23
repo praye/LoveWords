@@ -1,5 +1,6 @@
 package tedking.lovewords;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
@@ -46,12 +48,15 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private int startFragmentId;
     private SharedPreferences.Editor editor;
-    public static final String STARTFRAGMENTID = "startFragmentId", SONGID = "songId", QUESTIONNUMBER = "question_number";
+    private TextView username_nav;
+    private View nav_header;
+    static Activity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
         findView();
         agent = new FeedbackAgent(MainActivity.this);
         agent.sync();
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     //set
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        switch (preferences.getInt(STARTFRAGMENTID,0)){
+        switch (preferences.getInt(StringConstant.STARTFRAGMENTID,0)){
             case 0:
                 menu.findItem(R.id.menu_search).setChecked(true);
                 break;
@@ -78,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.menu_game).setChecked(true);
                 break;
         }
-        switch (preferences.getInt(SONGID,0)){
+        switch (preferences.getInt(StringConstant.SONGID,0)){
             case 0:
                 menu.findItem(R.id.menu_song0).setChecked(true);
                 break;
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.menu_song2).setChecked(true);
                 break;
         }
-        switch (preferences.getInt(QUESTIONNUMBER,10)){
+        switch (preferences.getInt(StringConstant.QUESTIONNUMBER,10)){
             case 5:
                 menu.findItem(R.id.menu_number_5).setChecked(true);
                 break;
@@ -110,31 +115,31 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.menu_search:
-                preferenceEdit(STARTFRAGMENTID,0);
+                preferenceEdit(StringConstant.STARTFRAGMENTID,0);
                 break;
             case R.id.menu_alarm:
-                preferenceEdit(STARTFRAGMENTID,1);
+                preferenceEdit(StringConstant.STARTFRAGMENTID,1);
                 break;
             case R.id.menu_game:
-                preferenceEdit(STARTFRAGMENTID,2);
+                preferenceEdit(StringConstant.STARTFRAGMENTID,2);
                 break;
             case R.id.menu_song0:
-                preferenceEdit(SONGID,0);
+                preferenceEdit(StringConstant.SONGID,0);
                 break;
             case R.id.menu_song1:
-                preferenceEdit(SONGID,1);
+                preferenceEdit(StringConstant.SONGID,1);
                 break;
             case R.id.menu_song2:
-                preferenceEdit(SONGID,2);
+                preferenceEdit(StringConstant.SONGID,2);
                 break;
             case R.id.menu_number_5:
-                preferenceEdit(QUESTIONNUMBER,5);
+                preferenceEdit(StringConstant.QUESTIONNUMBER,5);
                 break;
             case R.id.menu_number_10:
-                preferenceEdit(QUESTIONNUMBER,10);
+                preferenceEdit(StringConstant.QUESTIONNUMBER,10);
                 break;
             case R.id.menu_number_15:
-                preferenceEdit(QUESTIONNUMBER,15);
+                preferenceEdit(StringConstant.QUESTIONNUMBER,15);
                 break;
             case R.id.menu_about:
                 startActivity(new Intent(this,AboutActivity.class));
@@ -156,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+        nav_header = navigationView.getHeaderView(0);
+        username_nav = nav_header.findViewById(R.id.username_nav);
+        username_nav.setText(AVUser.getCurrentUser().getUsername());
 
         viewPager = findViewById(R.id.viewpager);
         if (viewPager != null) {
@@ -204,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
         }else {
             fab.setImageResource(R.drawable.ic_add);
         }
-        preferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
-        startFragmentId = preferences.getInt(STARTFRAGMENTID,0);
+        preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
+        startFragmentId = preferences.getInt(StringConstant.STARTFRAGMENTID,0);
         viewPager.setCurrentItem(startFragmentId);
 
     }

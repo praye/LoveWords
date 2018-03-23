@@ -9,6 +9,7 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_search"
+            android:visibility="gone"
             android:textAllCaps="false"
             android:text="@string/query"
             android:layout_width="wrap_content"

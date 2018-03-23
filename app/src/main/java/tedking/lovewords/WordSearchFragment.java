@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ import java.net.URLEncoder;
 
 public class WordSearchFragment extends android.support.v4.app.Fragment {
     private static final String url = "http://fanyi.youdao.com/openapi.do?keyfrom=WordAlarm&key=1428833977&type=data&doctype=xml&version=1.1&q=",
-            firstOpenApp = "firstOpenApp", search_failed_in_database = "not found in database",
+            search_failed_in_database = "not found in database",
             search_failed_in_Internet = "not found in Internet";
     public Button search;
     private EditText searchWord;
@@ -50,6 +51,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
     private SharedPreferences preferences;
     private String dirName;
     private boolean firstOpen;
+    private ImageView imageSearch;
     private SharedPreferences.Editor editor;
     private static final int UPDATE_CONTENT = 0;
     @Override
@@ -65,11 +67,13 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getContext(),editText.getText(),Toast.LENGTH_LONG).show();
-                /*Intent intent = new Intent();
-                intent.setClass(getActivity(),LoginActivity.class);
-                startActivity(intent);*/
                 searchWordandsetText();
+            }
+        });
+        imageSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search.performClick();
             }
         });
     }
@@ -81,15 +85,16 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         wordItself = view.findViewById(R.id.word_itself);
         pronunciation = view.findViewById(R.id.pronunciation);
         meaning = view.findViewById(R.id.meaning);
+        imageSearch = view.findViewById(R.id.search_icon);
     }
 
     public void isFirstOpenApp(){
-        preferences = getContext().getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
-        firstOpen = preferences.getBoolean(firstOpenApp,true);
+        preferences = getContext().getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
+        firstOpen = preferences.getBoolean(StringConstant.FIRSTOPENAPP,true);
         if (firstOpen){
             importDatabase();
             editor = preferences.edit();
-            editor.putBoolean(firstOpenApp, false).commit();
+            editor.putBoolean(StringConstant.FIRSTOPENAPP, false).commit();
             //Toast.makeText(getContext(), "yes", Toast.LENGTH_LONG).show();
         }
     }

@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AlarmingActivity extends Activity {
     private MediaPlayer mediaPlayer;
@@ -20,7 +21,6 @@ public class AlarmingActivity extends Activity {
     private SharedPreferences preferences;
     private Button exit, todo;
     long [] pattern = {1000,1000};
-    private static final String SONGID = "songId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +30,20 @@ public class AlarmingActivity extends Activity {
         final Intent intent = new Intent();
         intent.setClass(AlarmingActivity.this,AlarmService.class);
         startService(intent);
+        MainActivity.mainActivity.finish();
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         exit = findViewById(R.id.exit);
         todo = findViewById(R.id.todo);
-        preferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 finish();
             }
         },EXECUTE_TIME);
-        if (preferences.getInt(SONGID, 0) == 0){
+        if (preferences.getInt(StringConstant.SONGID, 0) == 0){
             mediaPlayer = MediaPlayer.create(this,R.raw.song0);
-        }else if (preferences.getInt(SONGID, 0) == 1){
+        }else if (preferences.getInt(StringConstant.SONGID, 0) == 1){
             mediaPlayer = MediaPlayer.create(this,R.raw.song1);
         }else {
             mediaPlayer = MediaPlayer.create(this,R.raw.song2);
@@ -63,9 +64,13 @@ public class AlarmingActivity extends Activity {
             public void onClick(View view) {
                 mediaPlayer.stop();
                 vibrator.cancel();
-                Intent intent1 = new Intent();
-                intent1.setClass(AlarmingActivity.this,Exercise.class);
-                startActivity(intent1);
+                if (preferences.getBoolean(StringConstant.TESTFINISH, false)){
+                    Toast.makeText(AlarmingActivity.this,"词库已经做完",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent1 = new Intent();
+                    intent1.setClass(AlarmingActivity.this,Exercise.class);
+                    startActivity(intent1);
+                }
                 finish();
             }
         });
