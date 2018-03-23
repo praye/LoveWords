@@ -30,6 +30,7 @@ public class AlarmingActivity extends Activity {
         final Intent intent = new Intent();
         intent.setClass(AlarmingActivity.this,AlarmService.class);
         startService(intent);
+        MainActivity.mainActivity.finish();
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         exit = findViewById(R.id.exit);
         todo = findViewById(R.id.todo);
