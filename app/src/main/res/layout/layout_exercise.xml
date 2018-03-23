@@ -3,44 +3,92 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/timer"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/score"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/testWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/choice0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/choice1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/choice2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/choice3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+        <TextView
+            android:id="@+id/timer"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="21sp"
+            android:textAlignment="center"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:id="@+id/score"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:textSize="21sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="center"/>
+    </LinearLayout>
 
+    <TextView
+        android:gravity="center"
+        android:id="@+id/testWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:background="@drawable/textview_border"
+        android:layout_margin="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+        <Button
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/choice0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:theme="@style/MyButton"/>
+        <Button
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/choice1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:theme="@style/MyButton"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp">
+        <Button
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/choice2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:theme="@style/MyButton"/>
+        <Button
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/choice3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:theme="@style/MyButton"/>
+    </LinearLayout>
 </LinearLayout>
