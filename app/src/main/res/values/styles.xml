@@ -19,4 +19,9 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/orange</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
+
 </resources>
