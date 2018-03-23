@@ -14,7 +14,7 @@
             android:layout_weight="9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="点击按键进入下一个"
+            android:hint="Click to Next"
             android:textStyle="bold|italic"
             android:textSize="16sp"/>
         <Button
@@ -22,7 +22,7 @@
             android:id="@+id/newone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="刷新"
+            android:text="Refresh"
             android:background="#00000000"
             android:textSize="14sp"/>
     </LinearLayout>
