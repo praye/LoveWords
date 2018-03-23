@@ -8,6 +8,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:gravity="bottom">
     <TextView
+        android:id="@+id/username_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="User Name"

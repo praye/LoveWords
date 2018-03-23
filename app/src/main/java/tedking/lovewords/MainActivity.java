@@ -1,5 +1,6 @@
 package tedking.lovewords;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
@@ -46,11 +48,15 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private int startFragmentId;
     private SharedPreferences.Editor editor;
+    private TextView username_nav;
+    private View nav_header;
+    static Activity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
         findView();
         agent = new FeedbackAgent(MainActivity.this);
         agent.sync();
@@ -155,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+        nav_header = navigationView.getHeaderView(0);
+        username_nav = nav_header.findViewById(R.id.username_nav);
+        username_nav.setText(AVUser.getCurrentUser().getUsername());
 
         viewPager = findViewById(R.id.viewpager);
         if (viewPager != null) {
