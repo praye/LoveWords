@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ public class Exercise extends Activity {
     private TextView word, timer, score;
     private String [] words;
     private String [] explains;
+    private String result = "";
+    private boolean finish = false;
     private SharedPreferences preferences;
     private int questionNumber, actualQuestionNumber, questionNow = 0, position, scoreNumber;
 
@@ -36,6 +39,7 @@ public class Exercise extends Activity {
         position = setText();
         for (int i = 0; i < 4; i ++)
             choices[i].setOnClickListener(onClickListener);
+        countDownTimer.start();
     }
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -100,16 +104,17 @@ public class Exercise extends Activity {
                 cursor.moveToNext();
                 explains[i] = cursor.getString(2);
             }
-        }else { //when number of result less than question number but larger than zero
+        }else { //when number of result less than or equals to question number but larger than zero
             actualQuestionNumber = cursor.getCount();
+            finish = true;
             for (int i = 0; i < dataNumber; i++){
                 cursor.moveToNext();
                 words[i] = cursor.getString(0);
                 explains[i] = cursor.getString(2);
             }
             int restNumber = expected_number - cursor.getCount();
-            cursor = database.rawQuery("select * from words where status = ? order by RANDOM() limit " + restNumber, new String[]{"1"});
-            for (int i = cursor.getCount(); i < expected_number; i ++){
+            cursor = database.rawQuery("select * from words where status = ? order by RANDOM() limit ?", new String[]{"1",String.valueOf(restNumber)});
+            for (int i = dataNumber; i < expected_number; i ++){
                 cursor.moveToNext();
                 explains[i] = cursor.getString(2);
             }
@@ -151,29 +156,47 @@ public class Exercise extends Activity {
     private void operation(int i){
         questionNow ++;
         if (questionNow == actualQuestionNumber){
+            Intent intent = new Intent(Exercise.this,FinishExerciseActivity.class);
             if (i == position){
                 scoreNumber += 10;
-                Intent intent = new Intent(Exercise.this,FinishExerciseActivity.class);
-                intent.putExtra("score",scoreNumber);
-                intent.putExtra("wordFinish", questionNumber != actualQuestionNumber);
-                startActivity(intent);
-                finish();
+                result = result + choices[position].getText() + ",";
             }else {
                 Toast.makeText(Exercise.this, "错误了", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Exercise.this,FinishExerciseActivity.class);
-                intent.putExtra("score",scoreNumber);
-                startActivity(intent);
-                finish();
             }
+            intent.putExtra("wordFinish", finish && scoreNumber / 10 == actualQuestionNumber);
+            intent.putExtra("score",scoreNumber);
+            intent.putExtra("words",result);
+            startActivity(intent);
+            finish();
         }else {
             if (i == position){
                 scoreNumber += 10;
+                result = result + choices[position].getText() + ",";
                 position = setText();
             }else {
                 position = setText();
                 Toast.makeText(Exercise.this, "错误了", Toast.LENGTH_SHORT).show();
             }
         }
+        countDownTimer.start();
+    }
+
+    private CountDownTimer countDownTimer = new CountDownTimer(11000,1000) {
+        @Override
+        public void onTick(long l) {
+            timer.setText((l / 1000) + "s");
+        }
+
+        @Override
+        public void onFinish() {
+            operation(5);
+        }
+    };
+
+    @Override
+    public void onDestroy(){
+        countDownTimer.cancel();
+        super.onDestroy();
     }
 
     //TODO CountDownTimer
