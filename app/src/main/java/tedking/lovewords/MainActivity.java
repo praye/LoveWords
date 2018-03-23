@@ -239,8 +239,10 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
                         switch (menuItem.getTitle().toString()){
                             case "Words I'm Learning":
+                                toWordsActivity("0");
                                 break;
                             case "Words I've mastered":
+                                toWordsActivity("1");
                                 break;
                             case "My Achievements":
                                 break;
@@ -326,6 +328,12 @@ public class MainActivity extends AppCompatActivity {
     private void toChampionActivity(String stage){
         Intent intent = new Intent(MainActivity.this,ChampionActivity.class);
         intent.putExtra("stage",stage);
+        startActivity(intent);
+    }
+
+    private void toWordsActivity(String status){
+        Intent intent = new Intent(MainActivity.this,WordsActivity.class);
+        intent.putExtra("status",status);
         startActivity(intent);
     }
 
