@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
     private SharedPreferences preferences;
     private String dirName;
     private boolean firstOpen;
+    private ImageView imageSearch;
     private SharedPreferences.Editor editor;
     private static final int UPDATE_CONTENT = 0;
     @Override
@@ -65,11 +67,13 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getContext(),editText.getText(),Toast.LENGTH_LONG).show();
-                /*Intent intent = new Intent();
-                intent.setClass(getActivity(),LoginActivity.class);
-                startActivity(intent);*/
                 searchWordandsetText();
+            }
+        });
+        imageSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search.performClick();
             }
         });
     }
@@ -81,6 +85,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         wordItself = view.findViewById(R.id.word_itself);
         pronunciation = view.findViewById(R.id.pronunciation);
         meaning = view.findViewById(R.id.meaning);
+        imageSearch = view.findViewById(R.id.search_icon);
     }
 
     public void isFirstOpenApp(){
