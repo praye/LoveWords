@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -15,10 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.SaveCallback;
 
 import java.io.File;
 
@@ -30,14 +27,17 @@ public class Exercise extends Activity {
     private String result = "";
     private boolean finish = false;
     private SharedPreferences preferences;
+    private Drawable drawable;
     private Handler handler = new Handler();
     private int questionNumber, actualQuestionNumber, questionNow = 0, position, scoreNumber;
+    private long firstPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_exercise);
         findView();
+        drawable = choices[0].getBackground();
         getData();
         position = setText();
         for (int i = 0; i < 4; i ++)
@@ -189,7 +189,7 @@ public class Exercise extends Activity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        choices[position].setBackgroundColor(Color.argb(0,137,207,240));
+                        choices[position].setBackground(drawable);
                         position = setText();
                         countDownTimer.start();
                     }
@@ -216,7 +216,15 @@ public class Exercise extends Activity {
         super.onDestroy();
     }
 
-    //TODO CountDownTimer
-    //TODO false select should have more effect to notice users
+    @Override
+    public void onBackPressed() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstPressTime > 2000) {
+            Toast.makeText(Exercise.this, "再按一次退出程序，退出后本次测试无效", Toast.LENGTH_SHORT).show();
+            firstPressTime = secondTime;
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }
