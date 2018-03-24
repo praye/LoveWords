@@ -45,19 +45,24 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
         <Button
             android:id="@+id/register_guide"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Register"/>
+            android:text="Register"
+            android:theme="@style/MyButton"
+            android:layout_marginEnd="8dp"/>
         <Button
             android:id="@+id/login_guide"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Log in" />
+            android:text="Log in"
+            android:theme="@style/MyButton"
+            android:layout_marginStart="8dp"/>
 
     </LinearLayout>
 

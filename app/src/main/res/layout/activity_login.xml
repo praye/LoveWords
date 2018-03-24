@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/login"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:theme="@style/MyButton"/>
 
         <Button
             android:id="@+id/username_register_button"
@@ -78,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/register"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:theme="@style/MyButton"/>
 
     </LinearLayout>
 </ScrollView>

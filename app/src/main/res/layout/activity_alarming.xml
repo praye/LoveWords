@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/todo"
-        android:text="to Exercise"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_button"
+        android:text="Enter"
+        android:layout_centerInParent="true"/>
     <Button
         android:layout_gravity="center"
         android:id="@+id/exit"
         android:text="exit the App"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:theme="@style/MyButton"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

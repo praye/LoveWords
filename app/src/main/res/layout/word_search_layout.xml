@@ -66,13 +66,17 @@
                 android:paddingTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"/>
+                android:textSize="21sp"
+                android:layout_margin="16dp"
+                android:padding="16dp" />
             <TextView
                 android:layout_gravity="center"
                 android:id="@+id/meaning"
                 android:paddingTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"/>
+                android:textSize="21sp"
+                android:layout_margin="16dp"
+                 />
         </LinearLayout>
 </LinearLayout>
