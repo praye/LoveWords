@@ -64,7 +64,7 @@ public class AlarmingActivity extends Activity {
             public void onClick(View view) {
                 mediaPlayer.stop();
                 vibrator.cancel();
-                if (preferences.getBoolean(StringConstant.TESTFINISH, false)){
+                if (preferences.getBoolean(StringConstant.ALLWORDSHAVEMASTERED, false)){
                     Toast.makeText(AlarmingActivity.this,"词库已经做完",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent1 = new Intent();
