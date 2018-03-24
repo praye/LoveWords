@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ public class Exercise extends Activity {
     private String result = "";
     private boolean finish = false;
     private SharedPreferences preferences;
+    private Handler handler = new Handler();
     private int questionNumber, actualQuestionNumber, questionNow = 0, position, scoreNumber;
 
     @Override
@@ -119,7 +122,6 @@ public class Exercise extends Activity {
                 explains[i] = cursor.getString(2);
             }
         }
-        Toast.makeText(Exercise.this, cursor.getCount()+"",Toast.LENGTH_SHORT).show();
     }
     private int setText(){
         score.setText(scoreNumber + "");
@@ -159,9 +161,16 @@ public class Exercise extends Activity {
             Intent intent = new Intent(Exercise.this,FinishExerciseActivity.class);
             if (i == position){
                 scoreNumber += 10;
-                result = result + choices[position].getText() + ",";
+                result = result + word.getText() + ",";
             }else {
-                Toast.makeText(Exercise.this, "错误了", Toast.LENGTH_SHORT).show();
+                countDownTimer.cancel();
+                choices[position].setBackgroundColor(Color.argb(255,137,207,240));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                },2000);
             }
             intent.putExtra("wordFinish", finish && scoreNumber / 10 == actualQuestionNumber);
             intent.putExtra("score",scoreNumber);
@@ -171,14 +180,22 @@ public class Exercise extends Activity {
         }else {
             if (i == position){
                 scoreNumber += 10;
-                result = result + choices[position].getText() + ",";
+                result = result + word.getText() + ",";
                 position = setText();
+                countDownTimer.start();
             }else {
-                position = setText();
-                Toast.makeText(Exercise.this, "错误了", Toast.LENGTH_SHORT).show();
+                countDownTimer.cancel();
+                choices[position].setBackgroundColor(Color.argb(255,137,207,240));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        choices[position].setBackgroundColor(Color.argb(0,137,207,240));
+                        position = setText();
+                        countDownTimer.start();
+                    }
+                },2000);
             }
         }
-        countDownTimer.start();
     }
 
     private CountDownTimer countDownTimer = new CountDownTimer(11000,1000) {
