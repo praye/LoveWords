@@ -69,13 +69,14 @@ public class ChampionActivity extends Activity {
                     if (list == null){
                         Toast.makeText(ChampionActivity.this,"目前未有排行信息",Toast.LENGTH_LONG).show();
                     }else {
-                        for (AVObject item : list){
+                        for (int i = 0; i < list.size(); i++){
                             Map<String, Object> map = new LinkedHashMap<>();
-                            map.put("user",item.get("user"));
-                            map.put("score",item.get("score"));
+                            map.put("user",list.get(i).get("user"));
+                            map.put("score",list.get(i).get("score"));
+                            setImageResource(map,i);
                             data.add(map);
                         }
-                        adapter = new SimpleAdapter(getApplicationContext(),data,R.layout.layout_champion_item,new String[]{"user","score"},new int[]{R.id.champion_username,R.id.champion_score});
+                        adapter = new SimpleAdapter(getApplicationContext(),data,R.layout.layout_champion_item,new String[]{"image","user","score"},new int[]{R.id.ranking,R.id.champion_username,R.id.champion_score});
                         listView.setAdapter(adapter);
                     }
 
@@ -84,5 +85,39 @@ public class ChampionActivity extends Activity {
                 }
             }
         });
+    }
+    private void setImageResource(Map<String, Object> map, int i){
+        switch (i){
+            case 0:
+                map.put("image",R.drawable.gold_medal);
+                break;
+            case 1:
+                map.put("image",R.drawable.silver_medal);
+                break;
+            case 2:
+                map.put("image",R.drawable.bronze_medal);
+                break;
+            case 3:
+                map.put("image",R.drawable.four);
+                break;
+            case 4:
+                map.put("image",R.drawable.five);
+                break;
+            case 5:
+                map.put("image",R.drawable.six);
+                break;
+            case 6:
+                map.put("image",R.drawable.seven);
+                break;
+            case 7:
+                map.put("image",R.drawable.eight);
+                break;
+            case 8:
+                map.put("image",R.drawable.nine);
+                break;
+            case 9:
+                map.put("image",R.drawable.ten);
+                break;
+        }
     }
 }
