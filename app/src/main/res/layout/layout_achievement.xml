@@ -2,7 +2,6 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app1="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
     <LinearLayout
         android:orientation="vertical"
@@ -181,6 +180,7 @@
                     android:layout_gravity="center"
                     android:padding="16dp">
                     <ImageView
+                        android:id="@+id/level01"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="1"
