@@ -8,17 +8,19 @@
         android:id="@+id/time"
         android:textSize="24sp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"/>
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:layout_gravity="center"/>
     <TextView
         android:id="@+id/repeat_day"
         android:textSize="16sp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"/>
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:layout_gravity="center"/>
     <Switch
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:focusable="false"
         android:layout_weight="2"
         android:id="@+id/alarm_control"
