@@ -14,4 +14,8 @@ public class StringConstant {
     public static final String FIRSTOPENAPP = "firstOpenApp"; // Whether the app is first open, return boolean;
     public static final String WORDSTOSENDTOCLOUD = "words to send to cloud"; // The words that should send to cloud, return String;
     public static final String ALLWORDSHAVEMASTERED = "all words have been mastered"; // Whether all words have been mastered, return boolean;
+    public static final String DAYSCORE = "day score"; //Day score, return int;
+    public static final String WEEKSCORE = "week score"; //Week score, return int;
+    public static final String DAYOFYEAR = "day of year"; // Day of year, return int;
+    public static final String WEEKOFYEAR = "week of year"; //Week of year, return int;
 }
