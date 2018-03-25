@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +33,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.feedback.FeedbackAgent;
 
 import java.util.ArrayList;
@@ -374,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTotalScoreId(){
         if (preferences.getString(StringConstant.TOTALSCOREID,"").equals("")){
-            if (wordSearchFragment.isNetworkAvailable()){
+            if (isNetworkAvailable()){
                 AVQuery<AVObject> query = new AVQuery<>("Records");
                 query.whereEqualTo("user",AVUser.getCurrentUser().getUsername());
                 query.getFirstInBackground(new GetCallback<AVObject>() {
@@ -382,10 +385,19 @@ public class MainActivity extends AppCompatActivity {
                     public void done(AVObject avObject, AVException e) {
                         if (e == null){
                             if (avObject == null){
-                                AVObject object = new AVObject("Records");
+                                final AVObject object = new AVObject("Records");
                                 object.put("totalScore",preferences.getInt(StringConstant.TOTALSCORE,0));
                                 object.put("user",AVUser.getCurrentUser().getUsername());
-                                object.saveInBackground();
+                                object.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(AVException e) {
+                                        if (e == null){
+                                            editor = preferences.edit();
+                                            editor.putString(StringConstant.TOTALSCOREID,object.getObjectId());
+                                            editor.commit();
+                                        }
+                                    }
+                                });
                             }else {
                                 editor = preferences.edit();
                                 editor.putInt(StringConstant.TOTALSCORE,avObject.getInt("totalScore"));
@@ -395,6 +407,20 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        }
+    }
+
+    public boolean isNetworkAvailable(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null){
+            return false;
+        }else {
+            NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+            if (info != null){
+                return info.isConnected();
+            }else {
+                return false;
             }
         }
     }
