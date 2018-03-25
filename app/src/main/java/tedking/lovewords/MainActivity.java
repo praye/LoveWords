@@ -26,7 +26,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.feedback.FeedbackAgent;
 
 import java.util.ArrayList;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mainActivity = this;
         findView();
+        getTotalScoreId();
         agent = new FeedbackAgent(MainActivity.this);
         agent.sync();
     }
@@ -364,6 +369,33 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(MainActivity.this,"You have not logged in yet",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void getTotalScoreId(){
+        if (preferences.getString(StringConstant.TOTALSCOREID,"").equals("")){
+            if (wordSearchFragment.isNetworkAvailable()){
+                AVQuery<AVObject> query = new AVQuery<>("Records");
+                query.whereEqualTo("user",AVUser.getCurrentUser().getUsername());
+                query.getFirstInBackground(new GetCallback<AVObject>() {
+                    @Override
+                    public void done(AVObject avObject, AVException e) {
+                        if (e == null){
+                            if (avObject == null){
+                                AVObject object = new AVObject("Records");
+                                object.put("totalScore",preferences.getInt(StringConstant.TOTALSCORE,0));
+                                object.put("user",AVUser.getCurrentUser().getUsername());
+                                object.saveInBackground();
+                            }else {
+                                editor = preferences.edit();
+                                editor.putInt(StringConstant.TOTALSCORE,avObject.getInt("totalScore"));
+                                editor.putString(StringConstant.TOTALSCOREID,avObject.getString("objectId"));
+                                editor.commit();
+                            }
+                        }
+                    }
+                });
+            }
         }
     }
 }

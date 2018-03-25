@@ -18,4 +18,6 @@ public class StringConstant {
     public static final String WEEKSCORE = "week score"; //Week score, return int;
     public static final String DAYOFYEAR = "day of year"; // Day of year, return int;
     public static final String WEEKOFYEAR = "week of year"; //Week of year, return int;
+    public static final String TOTALSCORE = "total score";//Total score, return int;
+    public static final String TOTALSCOREID = "total score id";//total score id, return string;
 }

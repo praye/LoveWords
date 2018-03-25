@@ -42,6 +42,7 @@ public class FinishExerciseActivity extends Activity {
         findView();
         updateScore("dayScore");
         updateScore("weekScore");
+        updateTotalScore();
         stringResult = stringResult + preferences.getString(StringConstant.WORDSTOSENDTOCLOUD,"");
 
         if (!stringResult.equals("")){
@@ -252,5 +253,17 @@ public class FinishExerciseActivity extends Activity {
                 }
             }
         });
+    }
+
+    private void updateTotalScore(){
+        editor = preferences.edit();
+        int tempTotalScore = preferences.getInt(StringConstant.TOTALSCORE,0) + score;
+        editor.putInt(StringConstant.TOTALSCORE,tempTotalScore);
+        editor.commit();
+        if (!preferences.getString(StringConstant.TOTALSCOREID,"").equals("")){
+            AVObject object = AVObject.createWithoutData("Records",StringConstant.TOTALSCOREID);
+            object.put("totalScore",tempTotalScore);
+            object.saveInBackground();
+        }
     }
 }
