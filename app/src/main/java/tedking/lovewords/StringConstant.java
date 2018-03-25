@@ -20,4 +20,6 @@ public class StringConstant {
     public static final String WEEKOFYEAR = "week of year"; //Week of year, return int;
     public static final String TOTALSCORE = "total score";//Total score, return int;
     public static final String TOTALSCOREID = "total score id";//total score id, return string;
+    public static final String TOTALLOGIN = "total login";//Total login days, return int;
+    public static final String LASTLOGINTIME = "last login time"; // Last login day, return int;
 }
