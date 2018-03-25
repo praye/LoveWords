@@ -42,7 +42,7 @@ public class FinishExerciseActivity extends Activity {
         findView();
         updateScore("dayScore");
         updateScore("weekScore");
-        updateTotalScore();
+        updateTotalScore(score);
         stringResult = stringResult + preferences.getString(StringConstant.WORDSTOSENDTOCLOUD,"");
 
         if (!stringResult.equals("")){
@@ -95,8 +95,6 @@ public class FinishExerciseActivity extends Activity {
      * @function update the status of words that have been mastered to 1;
      */
     private void updateWordsStatusToDatabase(){
-        for(String result : results)
-            System.out.println(result);
         File file = new File(getFilesDir()+"/databases/data.db");
         SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
         ContentValues contentValues = new ContentValues();
@@ -231,9 +229,9 @@ public class FinishExerciseActivity extends Activity {
                         sendScores(className);
                     }else {
                         if (className.equals("dayScore")){
-                            updateScoresDetail(className,avObject.getString("objectId"),score + preferences.getInt(StringConstant.DAYSCORE,0) + avObject.getInt("score") );
+                            updateScoresDetail(className,avObject.getObjectId(),score + preferences.getInt(StringConstant.DAYSCORE,0) + avObject.getInt("score") );
                         }else {
-                            updateScoresDetail(className,avObject.getString("objectId"),score + preferences.getInt(StringConstant.WEEKSCORE, 0)+ avObject.getInt("score") );
+                            updateScoresDetail(className,avObject.getObjectId(),score + preferences.getInt(StringConstant.WEEKSCORE, 0)+ avObject.getInt("score") );
                         }
                     }
                 }else{
@@ -255,13 +253,13 @@ public class FinishExerciseActivity extends Activity {
         });
     }
 
-    private void updateTotalScore(){
+    private void updateTotalScore(int score1){
+        int tempTotalScore = preferences.getInt(StringConstant.TOTALSCORE,0) + score1;
         editor = preferences.edit();
-        int tempTotalScore = preferences.getInt(StringConstant.TOTALSCORE,0) + score;
         editor.putInt(StringConstant.TOTALSCORE,tempTotalScore);
         editor.commit();
         if (!preferences.getString(StringConstant.TOTALSCOREID,"").equals("")){
-            AVObject object = AVObject.createWithoutData("Records",StringConstant.TOTALSCOREID);
+            AVObject object = AVObject.createWithoutData("Records",preferences.getString(StringConstant.TOTALSCOREID,""));
             object.put("totalScore",tempTotalScore);
             object.saveInBackground();
         }
