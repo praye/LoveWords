@@ -37,7 +37,6 @@ public class Exercise extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_exercise);
         findView();
-        drawable = choices[0].getBackground();
         getData();
         position = setText();
         for (int i = 0; i < 4; i ++)
@@ -185,6 +184,7 @@ public class Exercise extends Activity {
                 countDownTimer.start();
             }else {
                 countDownTimer.cancel();
+                drawable = choices[position].getBackground();
                 choices[position].setBackgroundColor(Color.argb(255,137,207,240));
                 handler.postDelayed(new Runnable() {
                     @Override
