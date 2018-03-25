@@ -4,45 +4,44 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class ChampionActivity extends Activity {
-    private TextView champion_username, champion_score;
+    private ListView listView;
     private String championOf, className;
-
-    //just for test, it will delete anytime;
-    private Button testButton;
+    private List<Map<String,Object>> data = new ArrayList<>();
+    private SimpleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_champion);
         championOf = getIntent().getStringExtra("stage");
-        champion_username = findViewById(R.id.champion_username);
-        champion_score = findViewById(R.id.champion_score);
-        testButton = findViewById(R.id.testButton);
-        testButton.setOnClickListener(listener);
+        listView = findViewById(R.id.champion_list);
         getChampionData(championOf);
     }
-    private View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            getChampionData(championOf);
-        }
-    };
     private void getChampionData(String string){
         Calendar calendar = Calendar.getInstance();
-        Date startDate = new Date();
+        Date startDate;
         if (string.equals("Today")){
             calendar.set(Calendar.HOUR_OF_DAY,0);
             calendar.set(Calendar.MINUTE,0);
@@ -62,20 +61,26 @@ public class ChampionActivity extends Activity {
         AVQuery<AVObject> query = new AVQuery<>(className);
         query.whereGreaterThanOrEqualTo("createdAt",startDate);
         query.orderByDescending("score");
-        query.getFirstInBackground(new GetCallback<AVObject>() {
+        query.limit(5);
+        query.findInBackground(new FindCallback<AVObject>() {
             @Override
-            public void done(AVObject avObject, AVException e) {
-                // object 就是符合条件的第一个 AVObject
+            public void done(List<AVObject> list, AVException e) {
                 if (e == null){
-                    if (avObject != null){
-                        champion_username.setText(avObject.getString("user"));
-                        champion_score.setText(avObject.getInt("score") + "");
+                    if (list == null){
+                        Toast.makeText(ChampionActivity.this,"目前未有排行信息",Toast.LENGTH_LONG).show();
                     }else {
-                        //TODO
-                        Toast.makeText(ChampionActivity.this,"目前还没有用户上传数据",Toast.LENGTH_SHORT).show();
+                        for (AVObject item : list){
+                            Map<String, Object> map = new LinkedHashMap<>();
+                            map.put("user",item.get("user"));
+                            map.put("score",item.get("score"));
+                            data.add(map);
+                        }
+                        adapter = new SimpleAdapter(getApplicationContext(),data,R.layout.layout_champion_item,new String[]{"user","score"},new int[]{R.id.champion_username,R.id.champion_score});
+                        listView.setAdapter(adapter);
                     }
+
                 }else {
-                    e.printStackTrace();
+                    Toast.makeText(ChampionActivity.this,"网络错误",Toast.LENGTH_LONG).show();
                 }
             }
         });
