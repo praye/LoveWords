@@ -22,8 +22,9 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:src="@drawable/bronze_medal"
+        android:src="@drawable/four"
         android:layout_margin="16dp"/>
+
     <TextView
         android:id="@+id/champion_username"
         android:layout_width="0dp"
