@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mainActivity = this;
         findView();
         getTotalScoreId();
+        setTotalLogin();
         agent = new FeedbackAgent(MainActivity.this);
         agent.sync();
     }
@@ -410,6 +411,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void setTotalLogin(){
+        if (StaticMethod.getDayOfYear() != preferences.getInt(StringConstant.LASTLOGINTIME,-1)){
+            int total = preferences.getInt(StringConstant.TOTALLOGIN,0) + 1;
+            editor = preferences.edit();
+            editor.putInt(StringConstant.TOTALLOGIN, total);
+            editor.putInt(StringConstant.LASTLOGINTIME,StaticMethod.getDayOfYear());
+            editor.commit();
+            if (!preferences.getString(StringConstant.TOTALSCOREID,"").equals("")){
+                AVObject object = AVObject.createWithoutData("Records",preferences.getString(StringConstant.TOTALSCOREID,""));
+                object.put("continueDays",total);
+                object.saveInBackground();
+            }
+        }
+    }
+
 
     public boolean isNetworkAvailable(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
