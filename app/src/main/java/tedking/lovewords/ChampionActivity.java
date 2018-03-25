@@ -2,26 +2,20 @@ package tedking.lovewords;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.avos.avoscloud.GetCallback;
 
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -89,34 +83,34 @@ public class ChampionActivity extends Activity {
     private void setImageResource(Map<String, Object> map, int i){
         switch (i){
             case 0:
-                map.put("image",R.drawable.gold_medal);
+                map.put("image",R.drawable.rank_gold);
                 break;
             case 1:
-                map.put("image",R.drawable.silver_medal);
+                map.put("image",R.drawable.rank_silver);
                 break;
             case 2:
-                map.put("image",R.drawable.bronze_medal);
+                map.put("image",R.drawable.rank_bronze);
                 break;
             case 3:
-                map.put("image",R.drawable.four);
+                map.put("image",R.drawable.rank_four);
                 break;
             case 4:
-                map.put("image",R.drawable.five);
+                map.put("image",R.drawable.rank_five);
                 break;
             case 5:
-                map.put("image",R.drawable.six);
+                map.put("image",R.drawable.rank_six);
                 break;
             case 6:
-                map.put("image",R.drawable.seven);
+                map.put("image",R.drawable.rank_seven);
                 break;
             case 7:
-                map.put("image",R.drawable.eight);
+                map.put("image",R.drawable.rank_eight);
                 break;
             case 8:
-                map.put("image",R.drawable.nine);
+                map.put("image",R.drawable.rank_nine);
                 break;
             case 9:
-                map.put("image",R.drawable.ten);
+                map.put("image",R.drawable.rank_ten);
                 break;
         }
     }

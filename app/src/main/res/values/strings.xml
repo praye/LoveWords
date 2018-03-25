@@ -40,4 +40,8 @@
     <string name="title_activity_register">Register</string>
     <string name="appwidget_text">Widget of LoveWords</string>
     <string name="add_widget">Add widget</string>
+
+
+    <!--Strings of Achievement tutor-->
+    <string name="achievement_instruction">Below is a list of all the achievements you\'ve earned on LoveWords. Keep playing and you\'ll gain more achievements.</string>
 </resources>

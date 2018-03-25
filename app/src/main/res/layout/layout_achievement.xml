@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_margin="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Achievements"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/achievement_instruction"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continuous Learning"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_margin="16dp">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="1"
+                        android:src="@drawable/continuous01"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="2"
+                        android:src="@drawable/continuous02"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="3"
+                        android:src="@drawable/continuous03"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="One Week"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="Two weeks"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="One Month"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="1"
+                        android:src="@drawable/continuous04"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="2"
+                        android:src="@drawable/continuous05"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="3"
+                        android:src="@drawable/continuous06"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="60 Days"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="100 Days"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="365 Days"
+                        android:textAlignment="center"/>
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--                Level View                    -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Levels"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_margin="16dp">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!--            Level 10-20             -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="1"
+                        android:src="@drawable/level01"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="2"
+                        android:src="@drawable/level02"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="3"
+                        android:src="@drawable/level03"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="LV 10"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="LV 20"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="LV 30"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!--            Level 40-60             -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="1"
+                        android:src="@drawable/level04"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="2"
+                        android:src="@drawable/level05"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="3"
+                        android:src="@drawable/level06"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="LV 40"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="LV 50"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="LV 60"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!--            Level 60-90             -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="1"
+                        android:src="@drawable/level07"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="2"
+                        android:src="@drawable/level08"
+                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_column="3"
+                        android:src="@drawable/level09"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="LV 70"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="LV 80"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"/>
+                    <TextView
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="LV 90"
+                        android:textAlignment="center"/>
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</ScrollView>
