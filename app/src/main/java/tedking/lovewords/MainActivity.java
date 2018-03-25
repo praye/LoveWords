@@ -30,6 +30,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.feedback.FeedbackAgent;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -215,7 +216,15 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
         startFragmentId = preferences.getInt(StringConstant.STARTFRAGMENTID,0);
         viewPager.setCurrentItem(startFragmentId);
-
+        editor = preferences.edit();
+        if (StaticMethod.getDayOfYear() != preferences.getInt(StringConstant.DAYOFYEAR,-1)){
+            editor.putInt(StringConstant.DAYSCORE,0);
+            editor.putInt(StringConstant.DAYOFYEAR,StaticMethod.getDayOfYear());
+        }
+        if (StaticMethod.getWeekOfYear() != preferences.getInt(StringConstant.WEEKOFYEAR,-1)){
+            editor.putInt(StringConstant.WEEKOFYEAR,StaticMethod.getWeekOfYear());
+            editor.putInt(StringConstant.WEEKSCORE,0);
+        }
     }
 
     //called by findView();
