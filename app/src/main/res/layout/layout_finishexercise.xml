@@ -35,7 +35,7 @@
 
     <Button
         android:id="@+id/nextLesson"
-        android:text="NEXT LESSON"
+        android:text="CONTINUE"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -55,13 +55,7 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_gravity="center">
-        <Button
-            android:id="@+id/redoButton"
-            android:text="REDO"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/MyButton"
-            android:layout_marginEnd="8dp" />
+
         <Button
             android:id="@+id/exitButton"
             android:text="EXIT"
