@@ -6,49 +6,53 @@
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TimePicker>
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:layout_margin="16dp"/>
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_margin="16dp">
         <Button
             android:id="@+id/Sunday"
-            android:text="日"
+            android:text="Sun"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
         <Button
             android:id="@+id/Monday"
-            android:text="一"
+            android:text="Mon"
             android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
         <Button
             android:id="@+id/Tuesday"
-            android:text="二"
+            android:text="Tue"
             android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
         <Button
             android:id="@+id/Wednesday"
-            android:text="三"
+            android:text="Wed"
             android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
         <Button
             android:id="@+id/Thursday"
-            android:text="四"
+            android:text="Thu"
             android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
         <Button
             android:id="@+id/Friday"
-            android:text="五"
+            android:text="Fri"
             android:layout_marginLeft="7dp"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
@@ -56,32 +60,34 @@
         <Button
             android:id="@+id/Saturday"
             android:layout_marginLeft="7dp"
-            android:text="六"
+            android:text="Mon"
             android:background="@drawable/corner_shape"
             android:layout_width="37dp"
             android:layout_height="37dp" />
     </LinearLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:layout_weight="2">
         <Button
             android:id="@+id/cancel"
-            android:layout_weight="1"
             android:text="CANCEL"
-            android:textSize="21sp"
-            android:layout_width="88dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="end"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
         <Button
             android:id="@+id/confirm"
             android:text="CONFIRM"
-            android:textSize="21sp"
-            android:layout_weight="1"
-            android:layout_width="88dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
