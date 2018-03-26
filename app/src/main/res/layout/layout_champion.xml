@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"/>
+    <TextView
+        android:id="@+id/empty_ranking"
+        android:layout_gravity="center_horizontal"
+        android:text="目前排行榜为空"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
