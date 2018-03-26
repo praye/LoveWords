@@ -377,6 +377,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     AVUser.getCurrentUser().logOut();
+                    File file = new File(getFilesDir()+"/databases/data.db");
+                    SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("status","0");
+                    database.update("words",contentValues,null,null);
+                    database.delete("words",null,null);
+                    database.close();
                     editor = preferences.edit();
                     editor.clear();
                     editor.commit();

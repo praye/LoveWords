@@ -34,6 +34,8 @@ public class RecoveryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_recovery);
         preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME,MODE_PRIVATE);
+        File file = new File(getFilesDir()+"/databases/data.db");
+        database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
         button = findViewById(R.id.recovery);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +57,6 @@ public class RecoveryActivity extends Activity {
 
     private void setStatus(){
         System.out.println("setStatus");
-        File file = new File(getFilesDir()+"/databases/data.db");
-        database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
         final AVQuery<AVObject> query = new AVQuery<>("userWord");
         query.whereEqualTo("user", AVUser.getCurrentUser().getUsername());
         query.countInBackground(new CountCallback() {
@@ -91,7 +91,8 @@ public class RecoveryActivity extends Activity {
     }
     @Override
     public void onDestroy(){
-        database.close();
+        if (database.isOpen())
+            database.close();
         super.onDestroy();
     }
     public boolean isNetworkAvailable(){
