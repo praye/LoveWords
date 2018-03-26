@@ -403,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
                             }else {
                                 editor = preferences.edit();
                                 editor.putInt(StringConstant.TOTALSCORE,avObject.getInt("totalScore"));
+                                editor.putInt(StringConstant.TOTALLOGIN,avObject.getInt("continueDays") + preferences.getInt(StringConstant.TOTALLOGIN,0));
                                 editor.putString(StringConstant.TOTALSCOREID,avObject.getString("objectId"));
                                 editor.commit();
                             }
