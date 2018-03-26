@@ -48,7 +48,7 @@ public class AlarmFragment extends Fragment {
     //List<Map<String,Object>> data = new ArrayList<>();
     List<TimeDetail> data = new ArrayList<>();
     private boolean []repeat = new boolean[]{false,false,false,false,false,false,false};
-    private String [] repeatDay = {"日 ","一 ","二 ","三 ","四 ","五 ","六 "};
+    private String [] repeatDay = {"Sun ","Mon ","Tue ","Wed ","Thu ","Fri ","Sat "};
     private static String alarmExist = "该时间的闹钟已存在，请重新设置", alarmTimeTooNear = "您设置的闹钟太相近，请重新设置", alarmSet = "闹钟已成功设置";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

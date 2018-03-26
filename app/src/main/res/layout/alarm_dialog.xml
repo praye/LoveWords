@@ -18,52 +18,59 @@
         android:layout_margin="16dp">
         <Button
             android:id="@+id/Sunday"
-            android:text="Sun"
+            android:text="S"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"/>
         <Button
             android:id="@+id/Monday"
-            android:text="Mon"
-            android:layout_marginLeft="7dp"
+            android:text="M"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
         <Button
             android:id="@+id/Tuesday"
-            android:text="Tue"
-            android:layout_marginLeft="7dp"
+            android:text="T"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
         <Button
             android:id="@+id/Wednesday"
-            android:text="Wed"
-            android:layout_marginLeft="7dp"
+            android:text="W"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
         <Button
             android:id="@+id/Thursday"
-            android:text="Thu"
-            android:layout_marginLeft="7dp"
+            android:text="T"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
         <Button
             android:id="@+id/Friday"
-            android:text="Fri"
-            android:layout_marginLeft="7dp"
+            android:text="F"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
         <Button
             android:id="@+id/Saturday"
-            android:layout_marginLeft="7dp"
-            android:text="Mon"
+            android:text="M"
             android:background="@drawable/corner_shape"
-            android:layout_width="37dp"
-            android:layout_height="37dp" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"/>
     </LinearLayout>
 
     <RelativeLayout

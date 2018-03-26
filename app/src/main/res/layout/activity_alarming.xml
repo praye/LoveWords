@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp">
+        <ImageView
+            android:src="@drawable/study"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Time to study"
+            android:layout_margin="8dp"
+            android:textSize="40sp"
+            android:textAlignment="center"/>
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/todo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_weight="6"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:background="@drawable/round_button"
-        android:text="Enter"
-        android:layout_centerInParent="true"/>
+        android:text="Enter" />
+
     <Button
-        android:layout_gravity="center"
         android:id="@+id/exit"
-        android:text="exit the App"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/MyButton"
+        android:layout_height="48dp"
+        android:layout_weight="2"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_gravity="center"
+        android:layout_margin="64dp"
+        android:text="exit the App"
+        android:theme="@style/MyButton" />
 </RelativeLayout>

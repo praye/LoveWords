@@ -32,7 +32,7 @@ public class AlarmService extends Service {
         manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         long alarmTime = System.currentTimeMillis() + 8 * 24 * 60 * 60 * 1000;
         boolean[] repeatDay = {false, false, false, false, false, false, false};
-        String[] stringDay = {"日", "一", "二", "三", "四", "五", "六"};
+        String[] stringDay = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         boolean hasAlarm = false;
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);

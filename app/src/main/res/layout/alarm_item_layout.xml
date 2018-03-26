@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="72dp"
     android:padding="16dp">
+
     <TextView
         android:id="@+id/time"
-        android:textSize="34sp"
+        android:textSize="31sp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:layout_gravity="center"/>
     <TextView
         android:id="@+id/repeat_day"
-        android:textSize="21sp"
+        android:textSize="15sp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="7"

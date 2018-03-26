@@ -24,4 +24,9 @@
         <item name="colorButtonNormal">@color/white</item>
     </style>
 
+    <style name="PlatButton_orange_white" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="colorButtonNormal">@color/orange</item>
+    </style>
+
 </resources>

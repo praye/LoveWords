@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logOut(){
         if (AVUser.getCurrentUser()!= null){
-            new AlertDialog.Builder(MainActivity.this).setMessage("We do not advise you to log out your account, it may cause your data lost").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(MainActivity.this).setMessage("Sure to login out? The learning history will be cleared.").setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 

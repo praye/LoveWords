@@ -65,7 +65,7 @@ public class AlarmingActivity extends Activity {
                 mediaPlayer.stop();
                 vibrator.cancel();
                 if (preferences.getBoolean(StringConstant.ALLWORDSHAVEMASTERED, false)){
-                    Toast.makeText(AlarmingActivity.this,"词库已经做完",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmingActivity.this,"You've finished all the Words",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent1 = new Intent();
                     intent1.setClass(AlarmingActivity.this,Exercise.class);
