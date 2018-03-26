@@ -2,10 +2,12 @@ package tedking.lovewords;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -32,11 +34,16 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.CountCallback;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.feedback.FeedbackAgent;
 
+import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
@@ -150,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_number_15:
                 preferenceEdit(StringConstant.QUESTIONNUMBER,15);
+                break;
+            case R.id.menu_recovery:
+                startActivity(new Intent(this,RecoveryActivity.class));
                 break;
             case R.id.menu_about:
                 startActivity(new Intent(this,AboutActivity.class));
@@ -367,6 +377,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     AVUser.getCurrentUser().logOut();
+                    editor = preferences.edit();
+                    editor.clear();
+                    editor.commit();
                     Toast.makeText(MainActivity.this,"You have logged out your account!", Toast.LENGTH_LONG).show();
                     finish();
                 }
@@ -387,6 +400,7 @@ public class MainActivity extends AppCompatActivity {
                     public void done(AVObject avObject, AVException e) {
                         if (e == null){
                             if (avObject == null){
+                                System.out.println("getTotalScoreId, but is null");
                                 final AVObject object = new AVObject("Records");
                                 object.put("totalScore",preferences.getInt(StringConstant.TOTALSCORE,0));
                                 object.put("user",AVUser.getCurrentUser().getUsername());
@@ -397,10 +411,12 @@ public class MainActivity extends AppCompatActivity {
                                             editor = preferences.edit();
                                             editor.putString(StringConstant.TOTALSCOREID,object.getObjectId());
                                             editor.commit();
+                                            System.out.println("getTotalScoreId, null, but is set");
                                         }
                                     }
                                 });
                             }else {
+                                System.out.println("getTotalScoreId, not null");
                                 editor = preferences.edit();
                                 editor.putInt(StringConstant.TOTALSCORE,avObject.getInt("totalScore"));
                                 editor.putInt(StringConstant.TOTALLOGIN,avObject.getInt("continueDays") + preferences.getInt(StringConstant.TOTALLOGIN,0));
@@ -425,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
                 AVObject object = AVObject.createWithoutData("Records",preferences.getString(StringConstant.TOTALSCOREID,""));
                 object.put("continueDays",total);
                 object.saveInBackground();
+                System.out.println("saveTotalLogin");
             }
         }
     }
