@@ -55,18 +55,21 @@
                     android:layout_gravity="center"
                     android:padding="16dp">
                     <ImageView
+                        android:id="@+id/continuous01"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="1"
                         android:src="@drawable/continuous01"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/continuous02"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="2"
                         android:src="@drawable/continuous02"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/continuous03"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="3"
@@ -109,18 +112,21 @@
                     android:layout_gravity="center"
                     android:padding="16dp">
                     <ImageView
+                        android:id="@+id/continuous04"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="1"
                         android:src="@drawable/continuous04"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/continuous05"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="2"
                         android:src="@drawable/continuous05"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/continuous06"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="3"
@@ -187,12 +193,14 @@
                         android:src="@drawable/level01"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level02"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="2"
                         android:src="@drawable/level02"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level03"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="3"
@@ -234,18 +242,21 @@
                     android:layout_gravity="center"
                     android:padding="16dp">
                     <ImageView
+                        android:id="@+id/level04"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="1"
                         android:src="@drawable/level04"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level05"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="2"
                         android:src="@drawable/level05"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level06"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="3"
@@ -288,18 +299,21 @@
                     android:layout_gravity="center"
                     android:padding="16dp">
                     <ImageView
+                        android:id="@+id/level07"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="1"
                         android:src="@drawable/level07"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level08"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="2"
                         android:src="@drawable/level08"
                         android:layout_marginEnd="16dp"/>
                     <ImageView
+                        android:id="@+id/level09"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
                         android:layout_column="3"
