@@ -263,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
                                 toWordsActivity("1");
                                 break;
                             case "My Achievements":
+                                startActivity(new Intent(MainActivity.this,AchievementActivity.class));
                                 break;
                             case "Log Out":
                                 logOut();

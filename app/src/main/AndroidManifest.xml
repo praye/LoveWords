@@ -108,7 +108,8 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".ChampionActivity" />
         <activity android:name=".FinishExerciseActivity" />
-        <activity android:name=".WordsActivity"></activity>
+        <activity android:name=".WordsActivity" />
+        <activity android:name=".AchievementActivity"></activity>
     </application>
 
 </manifest>
