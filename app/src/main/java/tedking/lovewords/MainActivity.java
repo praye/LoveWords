@@ -27,6 +27,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -202,9 +204,15 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 currentItem = position;
                 if (position == 0){
+                    fab.setVisibility(View.VISIBLE);
                     fab.setImageResource(R.drawable.ic_search);
-                }else {
+                }else if (position == 1){
+                    fab.setVisibility(View.VISIBLE);
                     fab.setImageResource(R.drawable.ic_add);
+                    hideIputKeyboard(MainActivity.this);
+                }else {
+                    fab.setVisibility(View.GONE);
+                    hideIputKeyboard(MainActivity.this);
                 }
             }
 
@@ -228,10 +236,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         if (currentItem == 0){
-            fab.setVisibility(View.VISIBLE);
             fab.setImageResource(R.drawable.ic_search);
         }else if (currentItem == 1){
-            fab.setVisibility(View.VISIBLE);
             fab.setImageResource(R.drawable.ic_add);
         }else {
             fab.setVisibility(View.GONE);
@@ -470,5 +476,19 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    public  void hideIputKeyboard(final Context context) {
+        final Activity activity = (Activity) context;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager mInputKeyBoard = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (activity.getCurrentFocus() != null) {
+                    mInputKeyBoard.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                    activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                }
+            }
+        });
     }
 }
