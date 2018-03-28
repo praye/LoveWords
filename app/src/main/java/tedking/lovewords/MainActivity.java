@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity {
                                 editor = preferences.edit();
                                 editor.putInt(StringConstant.TOTALSCORE,avObject.getInt("totalScore"));
                                 editor.putInt(StringConstant.TOTALLOGIN,avObject.getInt("continueDays") + preferences.getInt(StringConstant.TOTALLOGIN,0));
-                                editor.putString(StringConstant.TOTALSCOREID,avObject.getString("objectId"));
+                                editor.putString(StringConstant.TOTALSCOREID,avObject.getObjectId());
                                 editor.commit();
                             }
                         }
@@ -450,7 +450,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTotalLogin(){
         if (StaticMethod.getDayOfYear() != preferences.getInt(StringConstant.LASTLOGINTIME,-1)){
+            System.out.println("in setTotalLogin");
             int total = preferences.getInt(StringConstant.TOTALLOGIN,0) + 1;
+            System.out.println(total);
             editor = preferences.edit();
             editor.putInt(StringConstant.TOTALLOGIN, total);
             editor.putInt(StringConstant.LASTLOGINTIME,StaticMethod.getDayOfYear());
