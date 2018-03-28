@@ -60,9 +60,11 @@
         </item>
         <item
             android:id="@+id/menu_recovery"
+            android:visible="false"
             android:title="Recovery Data"></item>
         <item
             android:id="@+id/menu_about"
+            android:visible="false"
             android:title="About" />
     </group>
 
