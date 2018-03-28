@@ -164,10 +164,15 @@ public class Exercise extends Activity {
             }else {
                 countDownTimer.cancel();
                 choices[position].setBackgroundColor(Color.argb(255,137,207,240));
+                for (int j = 0; j < 4; j ++){
+                    choices[j].setClickable(false);
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                        for (int j = 0; j < 4; j ++){
+                            choices[j].setClickable(true);
+                        }
                     }
                 },2000);
             }
@@ -186,10 +191,16 @@ public class Exercise extends Activity {
                 countDownTimer.cancel();
                 drawable = choices[position].getBackground();
                 choices[position].setBackgroundColor(Color.argb(255,137,207,240));
+                for (int j = 0; j < 4; j ++){
+                    choices[j].setClickable(false);
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         choices[position].setBackground(drawable);
+                        for (int j = 0; j < 4; j ++){
+                            choices[j].setClickable(true);
+                        }
                         position = setText();
                         countDownTimer.start();
                     }
