@@ -6,7 +6,7 @@
     <TextView
         android:layout_gravity="center_horizontal"
         android:id="@+id/loadNotice"
-        android:text="Words I'm Learning. A list of all the words you're learning. Unfortunately, you're not learning any words yet. Start your learning now."
+        android:text="@string/words_mastered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"/>

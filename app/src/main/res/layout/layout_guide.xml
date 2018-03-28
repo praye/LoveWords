@@ -5,51 +5,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/welcome_background">
+    android:background="@drawable/welcome_background">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:text="@string/welcome"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="40sp"/>
-    <TextView
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/welcome_content_1"
-        android:textAlignment="center"
-        android:textSize="24sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/welcome_content_2"
-        android:textAlignment="center"
-        android:textSize="24sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/welcome_content_3"
-        android:textAlignment="center"
-        android:textSize="24sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/welcome_content_4"
-        android:textAlignment="center"
-        android:textSize="24sp"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:padding="16dp"
+        android:gravity="center">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/welcome_search"
+                android:gravity="center"/>
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_column="2"
+                android:src="@drawable/welcome_alarm_bell"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_marginEnd="16dp"
+                android:text="@string/welcome_content_1"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_column="2"
+                android:text="@string/welcome_content_2"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:src="@drawable/welcome_choices"/>
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_column="2"
+                android:src="@drawable/welcome_trophy"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:text="@string/welcome_content_3"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_column="2"
+                android:text="@string/welcome_content_4"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </TableRow>
+
+    </TableLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:gravity="center">
         <Button
             android:id="@+id/register_guide"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Register"
@@ -57,7 +123,7 @@
             android:layout_marginEnd="8dp"/>
         <Button
             android:id="@+id/login_guide"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Log in"

@@ -20,8 +20,8 @@
     <string name="welcome">Welcome to LoveWords</string>
     <string name="welcome_content_1">Look up a word</string>
     <string name="welcome_content_2">Set a reminder</string>
-    <string name="welcome_content_3">Test yourself everyday</string>
-    <string name="welcome_content_4">Learn it forever</string>
+    <string name="welcome_content_3">Start playing</string>
+    <string name="welcome_content_4">Earn points</string>
 
     <!-- Strings related to login -->
     <string name="login">Login</string>
@@ -41,7 +41,7 @@
     <string name="appwidget_text">Widget of LoveWords</string>
     <string name="add_widget">Add widget</string>
 
-
+    <string name="words_mastered">A list of all the words you\'ve mastered. Unfortunately, you haven\'t mastered any words yet. Don\'t despair, Keep Playing!</string>
     <!--Strings of Achievement tutor-->
     <string name="achievement_instruction">Below is a list of all the achievements you\'ve earned on LoveWords. Keep playing and you\'ll gain more achievements.</string>
 </resources>
