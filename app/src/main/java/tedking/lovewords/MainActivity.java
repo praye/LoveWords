@@ -228,9 +228,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         if (currentItem == 0){
+            fab.setVisibility(View.VISIBLE);
             fab.setImageResource(R.drawable.ic_search);
-        }else {
+        }else if (currentItem == 1){
+            fab.setVisibility(View.VISIBLE);
             fab.setImageResource(R.drawable.ic_add);
+        }else {
+            fab.setVisibility(View.GONE);
         }
         preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
         startFragmentId = preferences.getInt(StringConstant.STARTFRAGMENTID,0);
@@ -253,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(wordSearchFragment, "Search");
         adapter.addFragment(alarmFragment, "Alarm");
-        adapter.addFragment(new WordListFragment(), "Game");
+        adapter.addFragment(new GameFragment(), "Game");
         viewPager.setAdapter(adapter);
     }
 
