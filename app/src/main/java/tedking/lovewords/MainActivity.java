@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                hideInputKeyboard(MainActivity.this);
                 return true;
             case R.id.menu_search:
                 preferenceEdit(StringConstant.STARTFRAGMENTID,0);
@@ -209,10 +210,10 @@ public class MainActivity extends AppCompatActivity {
                 }else if (position == 1){
                     fab.setVisibility(View.VISIBLE);
                     fab.setImageResource(R.drawable.ic_add);
-                    hideIputKeyboard(MainActivity.this);
+                    hideInputKeyboard(MainActivity.this);
                 }else {
                     fab.setVisibility(View.GONE);
-                    hideIputKeyboard(MainActivity.this);
+                    hideInputKeyboard(MainActivity.this);
                 }
             }
 
@@ -478,7 +479,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public  void hideIputKeyboard(final Context context) {
+    public  void hideInputKeyboard(final Context context) {
         final Activity activity = (Activity) context;
         activity.runOnUiThread(new Runnable() {
             @Override
