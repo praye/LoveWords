@@ -4,4 +4,5 @@
     <color name="welcome_background">#388E3C</color>
     <color name="orange">#FF9800</color>
     <color name="white">#ffffff</color>
+    <color name="red">#D50000</color>
 </resources>
