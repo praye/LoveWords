@@ -59,6 +59,7 @@
             </menu>
         </item>
         <item
+            android:visible="false"
             android:id="@+id/menu_recovery"
             android:title="Recovery Data"></item>
         <item
