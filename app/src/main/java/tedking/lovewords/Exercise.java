@@ -121,6 +121,7 @@ public class Exercise extends Activity {
                 explains[i] = cursor.getString(2);
             }
         }
+        database.close();
     }
     private int setText(){
         score.setText(scoreNumber + "");
