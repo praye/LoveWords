@@ -396,6 +396,7 @@ public class MainActivity extends AppCompatActivity {
                     database.close();
                     editor = preferences.edit();
                     editor.clear();
+                    editor.putBoolean(StringConstant.FIRSTOPENAPP,false);
                     editor.commit();
                     Toast.makeText(MainActivity.this,"You have logged out your account!", Toast.LENGTH_LONG).show();
                     finish();

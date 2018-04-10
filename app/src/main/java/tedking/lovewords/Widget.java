@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.RemoteViews;
@@ -17,6 +18,7 @@ import java.io.File;
  */
 public class Widget extends AppWidgetProvider {
     private static String UPDATE_CONDUCTION = "REFRESH WORD IN WIDGET";
+    private SharedPreferences preferences;
 
     /*static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -73,25 +75,31 @@ public class Widget extends AppWidgetProvider {
         }
     }
 
-    public static String [] setTextOperation(Context context){
-        String tableName = "words", emptyCode = "no data in database";
+    public String [] setTextOperation(Context context){
+        preferences = context.getSharedPreferences(StringConstant.SHAREDPREFERENCENAME,Context.MODE_PRIVATE);
+        String tableName = "words", emptyCode = "You have mastered all words in database";
         String [] result = new String[2];
-        File file = new File(context.getFilesDir()+"/databases/data.db");
-        SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
-        Cursor cursor = database.rawQuery("select * from "+ tableName, null);
-        if (cursor.getCount() == 0){
-            result[0] = emptyCode;
-            database.close();
-            return  result;
-        }
-        else {
-            cursor = database.rawQuery("select * from " + tableName + " order by RANDOM() limit 1", null);
-            while (cursor.moveToNext()) {
-                result[0] = cursor.getString(0);
-                result[1] = cursor.getString(2);
-            }
-            database.close();
+        if (preferences.getBoolean(StringConstant.FIRSTOPENAPP,true)){
+            result[0] = "You need to login.";
+            result[1] = "Click refresh button after login";
             return result;
+        } else {
+            File file = new File(context.getFilesDir() + "/databases/data.db");
+            SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
+            Cursor cursor = database.rawQuery("select * from " + tableName + " where status = 0", null);
+            if (cursor.getCount() == 0) {
+                result[0] = emptyCode;
+                database.close();
+                return result;
+            } else {
+                cursor = database.rawQuery("select * from " + tableName + " where status = 0 order by RANDOM() limit 1", null);
+                while (cursor.moveToNext()) {
+                    result[0] = cursor.getString(0);
+                    result[1] = cursor.getString(2);
+                }
+                database.close();
+                return result;
+            }
         }
     }
 }
