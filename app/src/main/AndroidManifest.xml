@@ -29,7 +29,8 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,6 +39,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".WordDetailActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -60,13 +62,16 @@
 
 
         <!-- 反馈组件（需要加入以下声明）START -->
-        <activity android:name="com.avos.avoscloud.feedback.ThreadActivity" />
+        <activity android:name="com.avos.avoscloud.feedback.ThreadActivity"
+            android:screenOrientation="portrait"/>
         <!-- 反馈组件 END -->
 
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
 
@@ -86,7 +91,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".AlarmingActivity" />
+        <activity android:name=".AlarmingActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".BootCompletedReceiver"
@@ -97,7 +103,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -105,14 +112,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GuideActivity" />
-        <activity android:name=".Exercise" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ChampionActivity" />
-        <activity android:name=".FinishExerciseActivity" />
-        <activity android:name=".WordsActivity" />
-        <activity android:name=".AchievementActivity" />
-        <activity android:name=".RecoveryActivity"></activity>
+        <activity android:name=".GuideActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Exercise"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChampionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FinishExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".WordsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AchievementActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RecoveryActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

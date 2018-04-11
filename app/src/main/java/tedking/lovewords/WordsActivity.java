@@ -71,7 +71,7 @@ public class WordsActivity extends Activity implements LoadmoreListView.IloadLis
             cursor.close();
             adapter.notifyDataSetChanged();
         }else {
-            Toast.makeText(WordsActivity.this,"没有更多数据了",Toast.LENGTH_LONG).show();
+            Toast.makeText(WordsActivity.this,"No more data.",Toast.LENGTH_SHORT).show();
         }
         listView.onLoadComplete();
     }
