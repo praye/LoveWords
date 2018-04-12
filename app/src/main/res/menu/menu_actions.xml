@@ -61,7 +61,7 @@
         <item
             android:visible="true"
             android:id="@+id/menu_recovery"
-            android:title="Recovery Data"></item>
+            android:title="Data Recovery"></item>
         <item
             android:id="@+id/menu_about"
             android:visible="false"
