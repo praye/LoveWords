@@ -277,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         //Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
                         switch (menuItem.getTitle().toString()){
+                            case "test":
+                                toMyAccount();
+                                break;
                             case "Words I'm Learning":
                                 toWordsActivity("0");
                                 break;
@@ -493,5 +496,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void toMyAccount(){
+        Intent intent = new Intent(this,ModifyPasswordActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
