@@ -76,6 +76,8 @@ public class ModifyPasswordActivity extends AppCompatActivity {
                     }else {
                         if (e.getCode() == 210){
                             Toast.makeText(ModifyPasswordActivity.this,"Original password incorrect",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ModifyPasswordActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
