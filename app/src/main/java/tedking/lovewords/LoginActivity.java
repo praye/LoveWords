@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (e == null){
                                 Toast.makeText(LoginActivity.this,"We have sent an email to your email box.Please reset your password!",Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(LoginActivity.this,"Something Error!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
