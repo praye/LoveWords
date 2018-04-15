@@ -501,5 +501,6 @@ public class MainActivity extends AppCompatActivity {
     private void toMyAccount(){
         Intent intent = new Intent(this,AccountActivity.class);
         startActivity(intent);
+        MainActivity.this.finish();
     }
 }
