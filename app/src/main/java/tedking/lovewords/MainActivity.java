@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         //Toast.makeText(MainActivity.this, menuItem.getTitle(),Toast.LENGTH_LONG).show();
                         switch (menuItem.getTitle().toString()){
-                            case "test":
+                            case "My Account":
                                 toMyAccount();
                                 break;
                             case "Words I'm Learning":
@@ -499,8 +499,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toMyAccount(){
-        Intent intent = new Intent(this,ModifyPasswordActivity.class);
+        Intent intent = new Intent(this,AccountActivity.class);
         startActivity(intent);
-        finish();
     }
 }

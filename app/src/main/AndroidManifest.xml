@@ -141,7 +141,8 @@
         <activity
             android:name=".RecoveryActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ModifyPasswordActivity"></activity>
+        <activity android:name=".ModifyPasswordActivity" />
+        <activity android:name=".AccountActivity"></activity>
     </application>
 
 </manifest>

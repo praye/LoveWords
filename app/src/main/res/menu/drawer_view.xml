@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group  android:checkableBehavior="none">
-        <item android:id="@+id/testItem"
+        <item android:id="@+id/myAccount"
             android:visible="true"
             android:icon="@drawable/ic_account_box_black_24dp"
-            android:title="test"></item>
+            android:title="My Account"></item>
         <item
             android:id="@+id/nav_learning"
             android:icon="@drawable/ic_trending_up_black_24dp"

@@ -23,4 +23,5 @@ public class StringConstant {
     public static final String TOTALLOGIN = "total login";//Total login days, return int;
     public static final String LASTLOGINTIME = "last login time"; // Last login day, return int;
     public static final String UPDATEDICTIONARY = "update dictionary status"; // Update dictionary status, return boolean;
+    public static final String EMAIL = "e-mail"; // E-mail address;
 }
