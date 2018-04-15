@@ -80,6 +80,13 @@
             android:text="@string/register"
             android:textStyle="bold"
             android:theme="@style/MyButton"/>
+        <Button
+            android:textAllCaps="false"
+            android:layout_gravity="right"
+            android:id="@+id/forgetPassword"
+            android:text="Forget Password?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

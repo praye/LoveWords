@@ -3,12 +3,15 @@ package tedking.lovewords;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +27,7 @@ import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.RequestPasswordResetCallback;
 
 /**
  * A login screen that offers login via email/password.
@@ -34,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Dialog dialog;
+    private EditText email_dialog;
+    private Button forgetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
 
             LoginActivity.this.finish();
         }
+        forgetButton = findViewById(R.id.forgetPassword);
+        buildDialog();
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setTitle(getString(R.string.login));
@@ -79,9 +88,52 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
             }
         });
+        forgetButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    private void buildDialog(){
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_email_dialog,null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        dialog = builder.create();
+        Button cancel = view.findViewById(R.id.cancel_dialog);
+        Button confirm = view.findViewById(R.id.confirm_dialog);
+        email_dialog = view.findViewById(R.id.emailAddress_dialog);
+        confirm.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strPattern = "^[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]$";
+                if (email_dialog.getText().toString().matches(strPattern)) {
+                    AVUser.requestPasswordResetInBackground(email_dialog.getText().toString(), new RequestPasswordResetCallback() {
+                        @Override
+                        public void done(AVException e) {
+                            if (e == null){
+                                Toast.makeText(LoginActivity.this,"We have sent an email to your email box.Please reset your password!",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(LoginActivity.this,"Something Error!",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(LoginActivity.this,"Please input correct email address!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
 
