@@ -70,7 +70,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchWordandsetText();
+                searchWordAndSetText();
                 hideInputKeyboard(getContext());
             }
         });
@@ -83,7 +83,14 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),WordDetail.class));
+                if (isNetworkAvailable()) {
+                    Intent intent = new Intent(getContext(), WordDetail.class);
+                    intent.putExtra("word", wordItself.getText().toString());
+                    intent.putExtra("pronunciation", pronunciation.getText().toString());
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(),"Please check if your Internet is available",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -159,7 +166,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         String []translation = {"","",""};
         File file = new File(getContext().getFilesDir()+"/databases/data.db");
         SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
-        Cursor cursor = database.rawQuery("select * from words where english = ?",new String[]{searchWord.getText().toString()});
+        Cursor cursor = database.rawQuery("select * from words where english = ?",new String[]{searchWord.getText().toString().trim()});
         int column = 3;
         while (cursor.moveToNext()){
             for (int i = 0; i < column; i ++) {
@@ -195,10 +202,12 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
         new Thread(new mRunnable()).start();
     }
 
-    public void searchWordandsetText(){
+    public void searchWordAndSetText(){
         if (searchWord.getText().toString().equals("")){
             Toast.makeText(getContext(),"Please input the word you want to search",Toast.LENGTH_LONG).show();
-        }else {
+        } else if(searchWord.getText().toString().trim().contains(" ")){
+            Toast.makeText(getContext(),"Please input a single word",Toast.LENGTH_LONG).show();
+        } else {
             String [] result = searchFromDatabase();
             if (!result[0].equals(search_failed_in_database)){
                 wordItself.setText(result[0]);
