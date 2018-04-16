@@ -100,7 +100,7 @@ public class AccountActivity extends Activity {
     }
     private void setEmail(){
         final AVUser user = AVUser.getCurrentUser();
-        if (user.getEmail().equals(email_dialog.getText().toString())){
+        if (user.getEmail() != null && user.getEmail().equals(email_dialog.getText().toString())){
             Toast.makeText(AccountActivity.this,"You have set this email already.",Toast.LENGTH_SHORT).show();
         }else {
             user.setEmail(email_dialog.getText().toString());
@@ -111,7 +111,7 @@ public class AccountActivity extends Activity {
                         Toast.makeText(AccountActivity.this,"We have sent an email to your email box.Please verify your email address!",Toast.LENGTH_SHORT).show();
                         email.setText(user.getEmail());
                     }else {
-                        Toast.makeText(AccountActivity.this,"Something Error",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AccountActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 }
             });
