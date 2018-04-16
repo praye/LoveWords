@@ -1,5 +1,6 @@
 package tedking.lovewords;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,7 +48,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
     private static final String url = "http://fanyi.youdao.com/openapi.do?keyfrom=WordAlarm&key=1428833977&type=data&doctype=xml&version=1.1&q=",
             search_failed_in_database = "not found in database",
             search_failed_in_Internet = "not found in Internet";
-    public Button search;
+    public Button search,more;
     private EditText searchWord;
     private TextView wordItself, pronunciation, meaning;
     private SharedPreferences preferences;
@@ -68,6 +71,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
                 searchWordandsetText();
+                hideInputKeyboard(getContext());
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +80,17 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
                 search.performClick();
             }
         });
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),WordDetail.class));
+            }
+        });
     }
 
     public void findView(View view){
         search = view.findViewById(R.id.btn_search);
+        more = view.findViewById(R.id.moreDetail);
         searchWord = view.findViewById(R.id.edit_query);
         searchWord.setSingleLine();
         wordItself = view.findViewById(R.id.word_itself);
@@ -193,6 +204,7 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
                 wordItself.setText(result[0]);
                 pronunciation.setText(result[1]);
                 meaning.setText(result[2]);
+                more.setVisibility(View.VISIBLE);
             }else if (isNetworkAvailable()){
                 searchFromInternet();
             }else {
@@ -210,11 +222,13 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
                         wordItself.setText("");
                         pronunciation.setText("");
                         meaning.setText("");
+                        more.setVisibility(View.GONE);
                     }
                     else {
                         wordItself.setText(result[0]);
                         pronunciation.setText(result[1]);
                         meaning.setText(result[2]);
+                        more.setVisibility(View.VISIBLE);
                     }
                     break;
                 default:
@@ -222,6 +236,20 @@ public class WordSearchFragment extends android.support.v4.app.Fragment {
             }
         }
     };
+
+    public  void hideInputKeyboard(final Context context) {
+        final Activity activity = (Activity) context;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager mInputKeyBoard = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (activity.getCurrentFocus() != null) {
+                    mInputKeyBoard.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                    activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                }
+            }
+        });
+    }
 
     private class mRunnable implements Runnable{
         @Override

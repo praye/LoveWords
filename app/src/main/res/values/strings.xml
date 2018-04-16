@@ -44,4 +44,5 @@
     <string name="words_mastered">A list of all the words you\'ve mastered. Unfortunately, you haven\'t mastered any words yet. Don\'t despair, Keep Playing!</string>
     <!--Strings of Achievement tutor-->
     <string name="achievement_instruction">Below is a list of all the achievements you\'ve earned on LoveWords. Keep playing and you\'ll gain more achievements.</string>
+    <string name="title_activity_word_detail">WordDetail</string>
 </resources>

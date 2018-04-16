@@ -142,7 +142,11 @@
             android:name=".RecoveryActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ModifyPasswordActivity" />
-        <activity android:name=".AccountActivity"></activity>
+        <activity android:name=".AccountActivity" />
+        <activity
+            android:name=".WordDetail"
+            android:label="@string/title_activity_word_detail"
+            android:theme="@style/Theme.DesignDemo"></activity>
     </application>
 
 </manifest>
