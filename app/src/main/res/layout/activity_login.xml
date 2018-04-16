@@ -86,7 +86,8 @@
             android:id="@+id/forgetPassword"
             android:text="Forget Password?"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/PlatButton_orange_white"/>
 
     </LinearLayout>
 </ScrollView>
