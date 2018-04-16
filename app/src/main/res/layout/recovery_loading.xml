@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/noticeText"
             android:layout_marginLeft="10dp"
             android:textSize="15sp"
             android:text="Data recovering .."
