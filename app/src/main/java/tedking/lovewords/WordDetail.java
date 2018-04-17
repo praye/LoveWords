@@ -161,11 +161,11 @@ public class WordDetail extends AppCompatActivity {
 
     private void createTextView(String str,boolean isMeaning) {
         TextView textView = new TextView(this);
-        textView.setPadding(10, 10, 10, 10);
+        textView.setPadding(16, 16, 16, 16);
         textView.setText(str);
         if (isMeaning) {
-            textView.setTextSize(20);
-            textView.setTextColor(Color.rgb(255,0, 0));
+            textView.setTextSize(21);
+            textView.setTextColor(Color.rgb(21,101, 192));
         }else {
             textView.setTextSize(15);
         }

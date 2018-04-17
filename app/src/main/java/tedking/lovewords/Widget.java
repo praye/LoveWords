@@ -41,6 +41,7 @@ public class Widget extends AppWidgetProvider {
         Intent intent = new Intent();
         intent.setAction(UPDATE_CONDUCTION);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,0);
+
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.widget);
         remoteViews.setOnClickPendingIntent(R.id.newone,pendingIntent);
         appWidgetManager.updateAppWidget(appWidgetIds,remoteViews);
