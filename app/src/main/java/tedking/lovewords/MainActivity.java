@@ -391,6 +391,7 @@ public class MainActivity extends AppCompatActivity {
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("status","0");
                     database.update("words",contentValues,null,null);
+                    database.delete("alarm",null,null);
                     database.close();
                     editor = preferences.edit();
                     editor.clear();
