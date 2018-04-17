@@ -9,110 +9,119 @@
     <LinearLayout
         android:background="#4CAF50"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
         <ImageView
             android:id="@+id/backToMain"
             android:layout_margin="10dp"
             android:src="@drawable/ic_arrow_back_black_24dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
         <TextView
             android:layout_margin="10dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:text="My Account"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:layout_weight="2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:text="e-mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
                 android:textSize="20sp"
                 android:id="@+id/e_mail_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/modifyEmail_Item"
-                android:background="#00000000"
                 android:text="modify"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textAllCaps="false"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
         </LinearLayout>
         <TextView
             android:text="Your e-mail address.Your can reset your password with it!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <LinearLayout
         android:background="#525252"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_margin="16dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:text="modify password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
                 android:textAllCaps="false"
                 android:background="#00000000"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:text="modify"
                 android:id="@+id/modifyPassword_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
         </LinearLayout>
         <TextView
             android:text="You can modify your password here"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
         android:background="#525252"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:layout_margin="16dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_weight="1"
                 android:text="learning days"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:id="@+id/learning_days"
                 android:layout_marginRight="16dp"
                 android:layout_width="wrap_content"
@@ -126,24 +135,25 @@
     <LinearLayout
         android:background="#525252"
         android:layout_width="match_parent"
-        android:layout_height="1dp"></LinearLayout>
+        android:layout_height="1dp"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:layout_weight="2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:text="total scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:textSize="20sp"
-                android:layout_marginRight="10dp"
+                android:textSize="24sp"
+                android:layout_marginRight="16dp"
                 android:id="@+id/totalScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
