@@ -46,5 +46,6 @@ public class GameFragment extends android.support.v4.app.Fragment {
         exit = view.findViewById(R.id.exit);
         cardView = view.findViewById(R.id.cardView);
         cardView.setVisibility(View.GONE);
+        exit.setVisibility(View.GONE);
     }
 }

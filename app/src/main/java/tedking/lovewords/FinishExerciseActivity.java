@@ -65,6 +65,7 @@ public class FinishExerciseActivity extends Activity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(FinishExerciseActivity.this,MainActivity.class));
                 finish();
             }
         });
