@@ -13,7 +13,6 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

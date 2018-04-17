@@ -11,7 +11,6 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.Calendar;
