@@ -3,6 +3,8 @@ package tedking.lovewords;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -31,6 +35,8 @@ public class WordDetail extends AppCompatActivity {
     private Dialog dialog;
     private LinearLayout layout;
     private TextView wordItself, pronunciation_tv;
+    private MediaPlayer mediaPlayer;
+    private ImageButton play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,14 @@ public class WordDetail extends AppCompatActivity {
         findView();
         showDialog();
         new CallbackTask().execute(dictionaryEntries(word));
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mediaPlayer != null && !mediaPlayer.isPlaying()){
+                    mediaPlayer.start();
+                }
+            }
+        });
     }
 
     private void findView(){
@@ -55,6 +69,7 @@ public class WordDetail extends AppCompatActivity {
         }
         wordItself = findViewById(R.id.word_detail_itself);
         pronunciation_tv = findViewById(R.id.word_detail_pronunciation);
+        play = findViewById(R.id.play);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -118,8 +133,26 @@ public class WordDetail extends AppCompatActivity {
                 JSONArray array = resultObject.getJSONArray("results");
                 JSONObject object = array.getJSONObject(0);
                 JSONArray lexicalEntries = object.getJSONArray("lexicalEntries");
+                boolean pronunciationExist = false;
                 for (int i = 0; i < lexicalEntries.length(); i ++){
                     JSONObject lexicalEntry = lexicalEntries.getJSONObject(i);
+                    if (!pronunciationExist) {
+                        JSONArray pronunciations = lexicalEntry.getJSONArray("pronunciations");
+                        for (int j = 0; j < pronunciations.length(); j ++){
+                            JSONObject pronunciation = pronunciations.getJSONObject(j);
+                            String url = pronunciation.optString("audioFile");
+                            mediaPlayer = new MediaPlayer();
+                            try {
+                                mediaPlayer.setDataSource(WordDetail.this, Uri.parse(url));
+                                mediaPlayer.prepareAsync();
+                                play.setVisibility(View.VISIBLE);
+                            }catch (IOException e){
+                                e.printStackTrace();
+                                play.setVisibility(View.GONE);
+                            }
+                            break;
+                        }
+                    }
                     JSONArray entries = lexicalEntry.getJSONArray("entries");
                     for(int j = 0; j < entries.length(); j ++){
                         JSONObject entry = entries.getJSONObject(j);
@@ -182,6 +215,17 @@ public class WordDetail extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    @Override
+    public void onDestroy(){
+        if (mediaPlayer != null && mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }else if (mediaPlayer != null){
+            mediaPlayer.release();
+        }
+        super.onDestroy();
     }
 
 }
