@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:fitsSystemWindows="true"
+    android:id="@+id/constraintLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tedking.lovewords.MissingLetterActivity">
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.DesignDemo.AppBarOverlay">
@@ -20,13 +22,34 @@
 
     </android.support.design.widget.AppBarLayout>
     <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        android:id="@+id/linearLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/meaning_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:id="@+id/layout1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查看答案"
+        app:layout_constraintStart_toEndOf="@id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout"/>
+
+    <Button
+        android:id="@+id/nextOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下一题"
+        app:layout_constraintEnd_toStartOf="@id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout"/>
 
 </android.support.constraint.ConstraintLayout>
