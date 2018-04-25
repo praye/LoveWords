@@ -19,7 +19,7 @@ public class AlarmingActivity extends Activity {
     private Vibrator vibrator;
     private Handler handler = new Handler();
     private SharedPreferences preferences;
-    private Button exit, todo;
+    private Button exit, todo, missingLetter;
     long [] pattern = {1000,1000};
 
     @Override
@@ -34,6 +34,7 @@ public class AlarmingActivity extends Activity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         exit = findViewById(R.id.exit);
         todo = findViewById(R.id.todo);
+        missingLetter = findViewById(R.id.missingLetter);
         preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME, Context.MODE_PRIVATE);
         handler.postDelayed(new Runnable() {
             @Override
@@ -56,6 +57,15 @@ public class AlarmingActivity extends Activity {
             public void onClick(View view) {
                 mediaPlayer.stop();
                 vibrator.cancel();
+                finish();
+            }
+        });
+        missingLetter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer.stop();
+                vibrator.cancel();
+                startActivity(new Intent(AlarmingActivity.this,MissingLetterActivity.class));
                 finish();
             }
         });

@@ -14,7 +14,7 @@ import android.widget.Button;
  */
 
 public class GameFragment extends android.support.v4.app.Fragment {
-    private Button enter, exit;
+    private Button enter, exit, missingLetter;
     private CardView cardView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -33,6 +33,12 @@ public class GameFragment extends android.support.v4.app.Fragment {
                 getActivity().finish();
             }
         });
+        missingLetter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),MissingLetterActivity.class));
+            }
+        });
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +51,7 @@ public class GameFragment extends android.support.v4.app.Fragment {
         enter = view.findViewById(R.id.todo);
         exit = view.findViewById(R.id.exit);
         cardView = view.findViewById(R.id.cardView);
+        missingLetter = view.findViewById(R.id.missingLetter);
         cardView.setVisibility(View.GONE);
         exit.setVisibility(View.GONE);
     }

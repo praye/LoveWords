@@ -146,7 +146,8 @@
         <activity
             android:name=".WordDetail"
             android:label="@string/title_activity_word_detail"
-            android:theme="@style/Theme.DesignDemo"></activity>
+            android:theme="@style/Theme.DesignDemo" />
+        <activity android:name=".MissingLetterActivity"></activity>
     </application>
 
 </manifest>
