@@ -87,16 +87,17 @@ public class MissingLetterActivity extends AppCompatActivity {
     }
 
     private String [] getData(){
-        String [] result = new String[2];
+        String [] result = new String[3];
         if (database == null){
             File file = new File(getFilesDir()+"/databases/data.db");
             database = SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READWRITE);
         }
-        Cursor cursor = database.rawQuery("select english, chinese from words where status = 0 order by Random() limit 1",null);
+        Cursor cursor = database.rawQuery("select english, pronunciation, chinese from words where status = 0 order by Random() limit 1",null);
         if (cursor != null){
             while (cursor.moveToNext()){
                 result[0] = cursor.getString(0);
                 result[1] = cursor.getString(1);
+                result[2] = cursor.getString(2);
             }
         }else {
             result[1] = "No data";
@@ -189,6 +190,8 @@ public class MissingLetterActivity extends AppCompatActivity {
 
     private void operation(){
         if (linearLayout.getChildCount() > 1) {
+            System.out.println(linearLayout.getChildCount());
+            linearLayout.removeViewAt(1);
             linearLayout.removeViewAt(1);
         }
         englishLayout.removeAllViews();
@@ -226,6 +229,7 @@ public class MissingLetterActivity extends AppCompatActivity {
                 }
             }
             createTextView(result[1], true);
+            createTextView(result[2], true);
         }else {
             Toast.makeText(MissingLetterActivity.this,result[0],Toast.LENGTH_SHORT).show();
         }
