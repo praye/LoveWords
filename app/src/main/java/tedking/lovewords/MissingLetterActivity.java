@@ -1,7 +1,10 @@
 package tedking.lovewords;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,12 +32,15 @@ public class MissingLetterActivity extends AppCompatActivity {
     private SQLiteDatabase database;
     private Button answer, next;
     private String englishWord;
+    private Dialog dialog;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missing_letter);
         findView();
+        buildDialog();
         operation();
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +180,15 @@ public class MissingLetterActivity extends AppCompatActivity {
                         }
                     }
                     if (right){
-                        operation();
+                        dialog.show();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+                                operation();
+                            }
+                        },1000);
+
                         //Toast.makeText(MissingLetterActivity.this,"Correct",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(MissingLetterActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
@@ -233,5 +248,19 @@ public class MissingLetterActivity extends AppCompatActivity {
         }else {
             Toast.makeText(MissingLetterActivity.this,result[0],Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void buildDialog(){
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.recovery_loading,null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        TextView textView = view.findViewById(R.id.noticeText);
+        textView.setText("Right Answer");
+        view.findViewById(R.id.progressBar).setVisibility(View.GONE);
+        view.findViewById(R.id.rightAnswer).setVisibility(View.VISIBLE);
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
     }
 }
