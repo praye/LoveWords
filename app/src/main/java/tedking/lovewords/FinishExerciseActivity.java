@@ -34,6 +34,8 @@ public class FinishExerciseActivity extends Activity {
     private SharedPreferences.Editor editor;
     private Button nextLesson, exit;
     private int tempScore;
+    private double [] difficulty;
+    private int [] rightAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class FinishExerciseActivity extends Activity {
         updateScore("dayScore");
         updateScore("weekScore");
         updateTotalScore(score);
+        calculateAbility();
         stringResult = stringResult + preferences.getString(StringConstant.WORDSTOSENDTOCLOUD,"");
 
         if (!stringResult.equals("")){
@@ -84,6 +87,10 @@ public class FinishExerciseActivity extends Activity {
         preferences = getSharedPreferences(StringConstant.SHAREDPREFERENCENAME,MODE_PRIVATE);
         wordFinish = getIntent().getBooleanExtra("wordFinish", false);
         result_score.setText(score+"");
+        difficulty = getIntent().getDoubleArrayExtra("difficulty");
+        rightAnswer = getIntent().getIntArrayExtra("rightAnswer");
+        System.out.println(difficulty);
+        System.out.println(rightAnswer);
         if (wordFinish){
             editor = preferences.edit();
             editor.putBoolean(StringConstant.ALLWORDSHAVEMASTERED,true);
@@ -264,5 +271,34 @@ public class FinishExerciseActivity extends Activity {
             object.put("totalScore",tempTotalScore);
             object.saveInBackground();
         }
+    }
+
+    private void calculateAbility(){
+        double ability = 0, x1 = 1, sum, sum1, possibility;
+        int temp = 0;
+        for (int i = 0; i < rightAnswer.length; i++){
+            temp += rightAnswer[i];
+        }
+        if (temp == 0){
+            ability = -2;
+        }else if (temp == rightAnswer.length){
+            ability = 2;
+        }else {
+            while (Math.abs(x1 - ability) > 0.001) {
+                sum = 0;
+                sum1 = 0;
+                for (int i = 0; i < difficulty.length; i++) {
+                    possibility = 1 / (1 + Math.exp(-1.7 * (ability - difficulty[i])));
+                    sum = sum + (rightAnswer[i] - possibility);
+                    sum1 = sum1 - 1.7 * possibility * (1 - possibility);
+                }
+                x1 = ability;
+                ability = ability - sum / sum1;
+            }
+        }
+        System.out.println(ability);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat(StringConstant.ABILITY,(float)ability);
+        editor.commit();
     }
 }

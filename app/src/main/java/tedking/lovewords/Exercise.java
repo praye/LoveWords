@@ -29,7 +29,10 @@ public class Exercise extends Activity {
     private Drawable drawable;
     private Handler handler = new Handler();
     private int questionNumber, actualQuestionNumber, questionNow = 0, position, scoreNumber;
+    private double [] difficulty;
+    private int [] rightAnswer;
     private long firstPressTime = 0;
+    private double ability;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class Exercise extends Activity {
         setContentView(R.layout.layout_exercise);
         findView();
         getData();
+        rightAnswer = new int[actualQuestionNumber];
         position = setText();
         for (int i = 0; i < 4; i ++)
             choices[i].setOnClickListener(onClickListener);
@@ -73,31 +77,42 @@ public class Exercise extends Activity {
         questionNumber = preferences.getInt(StringConstant.QUESTIONNUMBER, 10);
         words = new String[questionNumber];
         explains = new String[questionNumber * 4];
+        ability = preferences.getFloat(StringConstant.ABILITY,-100);
+        System.out.println(ability);
     }
 
     private void getData(){
         int dataNumber, expected_number = questionNumber * 4;
         File file = new File(getFilesDir() + "/databases/data.db");
         SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
-        Cursor cursor = database.rawQuery("select * from words where status = ? order by RANDOM() limit " + expected_number, new String[]{"0"});
+        Cursor cursor;
+        if (ability == -100){
+            cursor = database.rawQuery("select * from words where status = 0 or status = 2 order by Random() limit " + expected_number, null);
+        }else {
+            cursor = database.rawQuery("select * from words where status = 0 or status = 2 order by abs(difficulty - " + ability + ") limit " + expected_number, null);
+        }
         dataNumber = cursor.getCount();
 
         //when number of result equals to expected number
         if (dataNumber == expected_number){
             actualQuestionNumber = questionNumber;
+            difficulty = new double[actualQuestionNumber];
             for (int i = 0; i < expected_number; i ++){
                 cursor.moveToNext();
                 if (i < questionNumber){
                     words[i] = cursor.getString(0);
+                    difficulty[i] = cursor.getFloat(4);
                 }
                 explains[i] = cursor.getString(2);
             }
         }else if (dataNumber > questionNumber){  //when number of result less than expected number but larger than question number
             actualQuestionNumber = questionNumber;
+            difficulty = new double[actualQuestionNumber];
             for (int i = 0; i < questionNumber; i ++){
                 cursor.moveToNext();
                 words[i] = cursor.getString(0);
                 explains[i] = cursor.getString(2);
+                difficulty[i] = cursor.getFloat(4);
             }
             int restNumber = questionNumber * 3;
             cursor = database.rawQuery("select * from words where status = ? order by RANDOM() limit " + restNumber, new String[]{"1"});
@@ -107,11 +122,13 @@ public class Exercise extends Activity {
             }
         }else { //when number of result less than or equals to question number but larger than zero
             actualQuestionNumber = cursor.getCount();
+            difficulty = new double[actualQuestionNumber];
             finish = true;
             for (int i = 0; i < dataNumber; i++){
                 cursor.moveToNext();
                 words[i] = cursor.getString(0);
                 explains[i] = cursor.getString(2);
+                difficulty[i] = cursor.getFloat(4);
             }
             int restNumber = expected_number - cursor.getCount();
             cursor = database.rawQuery("select * from words where status = ? order by RANDOM() limit ?", new String[]{"1",String.valueOf(restNumber)});
@@ -161,8 +178,10 @@ public class Exercise extends Activity {
             if (i == position){
                 scoreNumber += 10;
                 result = result + word.getText() + ",";
+                rightAnswer[questionNow - 1] = 1;
             }else {
                 countDownTimer.cancel();
+                rightAnswer[questionNow - 1] = 0;
                 choices[position].setBackgroundColor(Color.argb(255,137,207,240));
                 for (int j = 0; j < 4; j ++){
                     choices[j].setClickable(false);
@@ -179,16 +198,20 @@ public class Exercise extends Activity {
             intent.putExtra("wordFinish", finish && scoreNumber / 10 == actualQuestionNumber);
             intent.putExtra("score",scoreNumber);
             intent.putExtra("words",result);
+            intent.putExtra("difficulty", difficulty);
+            intent.putExtra("rightAnswer",rightAnswer);
             startActivity(intent);
             finish();
         }else {
             if (i == position){
                 scoreNumber += 10;
                 result = result + word.getText() + ",";
+                rightAnswer[questionNow - 1] = 1;
                 position = setText();
                 countDownTimer.start();
             }else {
                 countDownTimer.cancel();
+                rightAnswer[questionNow - 1] = 0;
                 drawable = choices[position].getBackground();
                 choices[position].setBackgroundColor(Color.argb(255,137,207,240));
                 for (int j = 0; j < 4; j ++){

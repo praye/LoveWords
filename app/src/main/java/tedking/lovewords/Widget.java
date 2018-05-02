@@ -85,19 +85,34 @@ public class Widget extends AppWidgetProvider {
             result[1] = "Click refresh button after login";
             return result;
         } else {
+            double ability = preferences.getFloat(StringConstant.ABILITY,0);
             File file = new File(context.getFilesDir() + "/databases/data.db");
             SQLiteDatabase database = SQLiteDatabase.openDatabase(file.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
             Cursor cursor = database.rawQuery("select * from " + tableName + " where status = 0", null);
             if (cursor.getCount() == 0) {
-                result[0] = emptyCode;
-                database.close();
-                return result;
+                cursor = database.rawQuery("select * from " + tableName + " where status = 2", null);
+                if (cursor.getCount() == 0) {
+                    result[0] = emptyCode;
+                    database.close();
+                    return result;
+                }else {
+                    database.execSQL("update words set status = 0 where status = 2");
+                    cursor = database.rawQuery("select * from " + tableName + " where status = 0 order by abs(difficulty - " + ability + " ) limit 1", null);
+                    while (cursor.moveToNext()) {
+                        result[0] = cursor.getString(0);
+                        result[1] = cursor.getString(2);
+                    }
+                    database.execSQL("update words set status = 2 where english = '" + result[0] + "'");
+                    database.close();
+                    return result;
+                }
             } else {
-                cursor = database.rawQuery("select * from " + tableName + " where status = 0 order by RANDOM() limit 1", null);
+                cursor = database.rawQuery("select * from " + tableName + " where status = 0 order by abs(difficulty - " + ability + " ) limit 1", null);
                 while (cursor.moveToNext()) {
                     result[0] = cursor.getString(0);
                     result[1] = cursor.getString(2);
                 }
+                database.execSQL("update words set status = 2 where english = '" + result[0] + "'");
                 database.close();
                 return result;
             }
